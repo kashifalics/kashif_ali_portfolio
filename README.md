@@ -60,19 +60,19 @@ there is no screenshot. Feature `state` must be one of `implemented`, `in-progre
 |---|---|---|
 | Profile photo | `public/images/profile/kashif-ali.jpg` | Replace the file, or change `profile.photo`. `focus` sets the crop point. Empty `src` shows an initials placeholder |
 | Resume | `public/documents/muhammad-kashif-ali-resume.pdf` | Replace the file to update every download button |
-| Job Apply Agent dashboard | `public/images/projects/job-apply-agent/dashboard.png` | **Not added yet.** Until it exists, the flagship card shows a neutral drawn frame. See below |
+| Job Apply Agent dashboard | `public/images/projects/job-apply-agent/dashboard.png` | Live app's Overview page, cropped to the app with the account email removed. The uncropped original stays in `design-reference/`, which Git ignores |
 | Other screenshots | `public/images/projects/` | Referenced from `projects.ts` |
 | Kashzo logo | `public/images/kashzo/kashzo-logo.png` | Official logo, unmodified |
 
 Missing images never break the page: `src/lib/assets.ts` checks at build time whether each file
 exists and falls back to the drawn visual.
 
-### Adding the dashboard screenshot
+### Replacing the dashboard screenshot
 
 1. Crop out the browser tabs, address bar and taskbar so only the app is visible.
 2. Check that no email address, name or other account detail is visible.
 3. Save it as `public/images/projects/job-apply-agent/dashboard.png`.
-4. If its size differs from 1628×765, update `width` and `height` of the cover in
+4. If its size differs from 1897×873, update `width` and `height` of the cover in
    `src/data/projects.ts`. Then rebuild.
 
 ## Environment variables

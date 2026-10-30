@@ -71,6 +71,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
+      // Lets Next.js switch off smooth scrolling while it changes pages, so a
+      // route change jumps straight to the top instead of animating there.
+      data-scroll-behavior="smooth"
       className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrains.variable}`}
     >
       <body className="min-h-screen overflow-x-hidden">

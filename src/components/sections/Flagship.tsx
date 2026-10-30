@@ -53,6 +53,7 @@ export function Flagship({ project }: { project: Project }) {
             <ProjectMedia
               project={project}
               priority
+              natural
               sizes="(min-width: 1200px) 1150px, 100vw"
               className="aspect-[16/8] rounded-[14px] border border-line"
             />

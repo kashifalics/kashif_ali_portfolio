@@ -25,6 +25,7 @@ export const experience: ExperienceItem[] = [
     description:
       "Building a technology company focused on web development, AI automation, and digital products.",
     related: [
+      { label: "Saqinova", href: "/projects/saqinova-website" },
       { label: "Kashzo website", href: "/projects/kashzo-solutions-website" },
       { label: "Client websites", href: "/projects/kashzo-client-websites" },
     ],
@@ -76,5 +77,5 @@ export const kashzo = {
     { label: "Facebook", href: "https://www.facebook.com/Kashzosolutions/" },
     { label: "X", href: "https://x.com/KashzoSolutions" },
   ],
-  projectSlugs: ["kashzo-solutions-website", "kashzo-client-websites", "kashzo-outreach", "jap-roofing-concept"],
+  projectSlugs: ["saqinova-website", "kashzo-solutions-website", "jap-roofing-concept", "kashzo-client-websites", "kashzo-outreach"],
 } as const;

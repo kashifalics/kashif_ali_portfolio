@@ -19,3 +19,6 @@ next-env.d.ts
 .playwright-mcp/
 npm-debug.log*
 .DS_Store
+
+# original screenshots with personal details; never published
+design-reference/

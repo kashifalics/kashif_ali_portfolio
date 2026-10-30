@@ -119,7 +119,7 @@ export default async function ProjectPage({ params }: Props) {
       <Container>
         <Reveal className="mt-12">
           <div className="rounded-[22px] border border-line-strong bg-gradient-to-b from-elevated to-bg-2 p-2 shadow-[0_40px_120px_-50px_rgba(56,189,248,0.4)] sm:p-3">
-            <ProjectMedia project={project} priority sizes="(min-width: 1200px) 1150px, 100vw" className="aspect-[16/8] rounded-[14px] border border-line" />
+            <ProjectMedia project={project} priority natural sizes="(min-width: 1200px) 1150px, 100vw" className="aspect-[16/8] rounded-[14px] border border-line" />
           </div>
         </Reveal>
 
