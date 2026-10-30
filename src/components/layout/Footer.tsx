@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { profile } from "@/data/profile";
 import { navItems } from "@/lib/site";
+import { HomeLink } from "./HomeLink";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/icons";
 import { Container } from "@/components/ui/primitives";
 
@@ -17,13 +18,16 @@ export function Footer() {
         <div>
           <p className="label mb-4">Pages</p>
           <ul className="grid grid-cols-2 gap-2 text-sm">
-            {navItems.map((n) => (
-              <li key={n.href}>
-                <Link href={n.href} className="text-fg-2 transition-colors hover:text-cyan">
-                  {n.label}
-                </Link>
-              </li>
-            ))}
+            {navItems.map((n) => {
+              const NavLink = n.href === "/" ? HomeLink : Link;
+              return (
+                <li key={n.href}>
+                  <NavLink href={n.href} className="text-fg-2 transition-colors hover:text-cyan">
+                    {n.label}
+                  </NavLink>
+                </li>
+              );
+            })}
           </ul>
         </div>
         <div>

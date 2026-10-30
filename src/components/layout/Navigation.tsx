@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navItems, cn } from "@/lib/site";
 import { profile } from "@/data/profile";
+import { HomeLink } from "./HomeLink";
 
 function isActive(pathname: string, href: string) {
   if (href.includes("#")) return false;
@@ -52,19 +53,20 @@ export function Navigation() {
             : "border-transparent bg-transparent",
         )}
       >
-        <Link href="/" className="flex items-center gap-2.5" aria-label={`${profile.name}, home`}>
+        <HomeLink href="/" className="flex items-center gap-2.5" aria-label={`${profile.name}, home`}>
           <span className="grid size-9 place-items-center rounded-full border border-line-strong bg-card font-display text-sm font-semibold text-cyan">
             {profile.initials}
           </span>
           <span className="font-display text-[15px] font-semibold text-fg">{profile.shortName}</span>
-        </Link>
+        </HomeLink>
 
         <ul className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => {
             const active = isActive(pathname, item.href);
+            const NavLink = item.href === "/" ? HomeLink : Link;
             return (
               <li key={item.href}>
-                <Link
+                <NavLink
                   href={item.href}
                   aria-current={active ? "page" : undefined}
                   className={cn(
@@ -80,7 +82,7 @@ export function Navigation() {
                     />
                   )}
                   {item.label}
-                </Link>
+                </NavLink>
               </li>
             );
           })}
@@ -119,9 +121,10 @@ export function Navigation() {
             <ul>
               {navItems.map((item) => {
                 const active = isActive(pathname, item.href);
+                const NavLink = item.href === "/" ? HomeLink : Link;
                 return (
                   <li key={item.href}>
-                    <Link
+                    <NavLink
                       href={item.href}
                       onClick={() => setOpen(false)}
                       aria-current={active ? "page" : undefined}
@@ -131,7 +134,7 @@ export function Navigation() {
                       )}
                     >
                       {item.label}
-                    </Link>
+                    </NavLink>
                   </li>
                 );
               })}
