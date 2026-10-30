@@ -43,8 +43,7 @@ Left out deliberately: `Facebook-Post-Manager-system` (no README to describe it 
 1. **Spadasoft.** Resolved 2026-10-30: AI Engineer Intern, June – August 2026, matching the resume.
 2. **Degree status.** Both resumes show the BS as *2023 – 2027*, so the biography says
    "computer science student" rather than "graduate", and the Education card shows 2023 – 2027.
-3. **LinkedIn URL** was taken from your earlier portfolio
-   (`linkedin.com/in/muhammad-kashif-ali-7940a9310`). Confirm it.
+3. **LinkedIn URL** `linkedin.com/in/muhammad-kashif-ali-7940a9310`: confirmed by the owner 2026-10-30.
 4. **Resume.** `public/documents` holds `Kashif-ali-resume (1) (1).pdf`, supplied by the owner.
    It includes a phone number, which anyone who downloads it will see. Its job title for
    Spadasoft (AI Engineer Intern, June – August 2026) matches the site.
