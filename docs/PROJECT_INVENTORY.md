@@ -2,7 +2,7 @@
 
 Audited 2026-10-30 from the local workspace (`Desktop/`), the public GitHub repositories of
 `kashifalics`, the Job Apply Agent's `README.md`, `docs/ARCHITECTURE.md` and
-`docs/HANDOVER.md`, and the resume dated 2026-10-18.
+`docs/HANDOVER.md`, and the resumes dated 2026-10-17 and 2026-10-18.
 
 | Project | Category | Ownership | Status | Evidence | Repo | Live |
 |---|---|---|---|---|---|---|
@@ -41,13 +41,13 @@ Left out deliberately: `Facebook-Post-Manager-system` (no README to describe it 
 
 1. **Spadasoft.** The brief says *AI Automation Intern, 1 July – 31 August 2026*. The resume says
    *AI Engineer Intern, Jun 2026 – Aug 2026*. The site follows the brief.
-2. **Degree status.** The resume shows the BS as *Jan 2023 – Jan 2027*, so the biography says
-   "computer science student" rather than "graduate". Change `bio` in
-   `src/components/sections/AboutBlocks.tsx` if you have graduated, and add `education.period`.
+2. **Degree status.** Both resumes show the BS as *2023 – 2027*, so the biography says
+   "computer science student" rather than "graduate", and the Education card shows 2023 – 2027.
 3. **LinkedIn URL** was taken from your earlier portfolio
    (`linkedin.com/in/muhammad-kashif-ali-7940a9310`). Confirm it.
-4. **Resume.** `public/documents` holds a copy of `MUHAMMAD KASHIF ALI - Resume - AIOTAC.pdf`,
-   the newest one found; its file name suggests it was tailored for one application.
+4. **Resume.** `public/documents` holds `Kashif-ali-resume (1) (1).pdf`, supplied by the owner.
+   It includes a phone number, which anyone who downloads it will see. Its job title for
+   Spadasoft (AI Engineer Intern) differs from the site's (see 1).
 5. **Voice agent ownership.** Marked as an internship project because the resume lists it under
    Spadasoft. The client hotel is not named on the site.
 6. **Kashzo client sites.** Your exact role and each site's stack are not recorded anywhere;

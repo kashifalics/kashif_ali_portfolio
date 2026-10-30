@@ -44,9 +44,16 @@ export const education = {
   short: "BS Computer Science",
   institution: "Virtual University of Pakistan",
   location: "Lahore, Pakistan",
-  /** Add dates here once confirmed, e.g. "2023 – 2027". */
-  period: "",
+  period: "2023 – 2027",
 } as const;
+
+/** From the resume. Add a `url` to link a credential. */
+export const certifications: { issuer: string; title: string; date: string; url?: string }[] = [
+  { issuer: "Microsoft", title: "Fundamentals of AI and ML", date: "Feb 2026" },
+  { issuer: "Great Learning", title: "Introduction to Natural Language Processing", date: "Jan 2026" },
+  { issuer: "Innovista", title: "Machine Learning", date: "Dec 2025" },
+  { issuer: "Cisco Networking Academy", title: "Programming Essentials in Python", date: "Sep 2025" },
+];
 
 export const kashzo = {
   name: "Kashzo Solutions Ltd.",

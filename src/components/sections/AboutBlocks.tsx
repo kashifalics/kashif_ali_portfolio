@@ -1,5 +1,5 @@
 import { GraduationCap, MapPin } from "lucide-react";
-import { education } from "@/data/experience";
+import { certifications, education } from "@/data/experience";
 import { interests, profile } from "@/data/profile";
 import { ProfilePhoto } from "./ProfilePhoto";
 
@@ -25,6 +25,22 @@ export function EducationCard() {
         <MapPin size={14} /> {education.location}
         {education.period && <span className="ml-2 font-mono">{education.period}</span>}
       </p>
+      {certifications.length > 0 && (
+        <div className="mt-6 border-t border-line pt-5">
+          <p className="text-xs text-fg-3">Certifications</p>
+          <ul className="mt-3 space-y-3">
+            {certifications.map((c) => (
+              <li key={c.title} className="flex items-baseline justify-between gap-4 text-sm">
+                <span>
+                  <span className="block text-fg">{c.title}</span>
+                  <span className="block text-fg-3">{c.issuer}</span>
+                </span>
+                <span className="shrink-0 font-mono text-xs text-fg-3">{c.date}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
