@@ -12,7 +12,7 @@ import { ContactCta } from "@/components/sections/ContactCta";
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "Experience of Muhammad Kashif Ali: AI Automation Intern at Spadasoft, founder of Kashzo Solutions Ltd., and independent AI engineering.",
+    "Experience of Muhammad Kashif Ali: AI Engineer Intern at Spadasoft, founder of Kashzo Solutions Ltd., and independent AI engineering.",
   alternates: { canonical: "/experience" },
   openGraph: { url: "/experience" },
 };
@@ -23,7 +23,7 @@ export default function ExperiencePage() {
       <PageHeader
         label="Experience"
         title="Where I've been building"
-        intro="An internship in AI automation, a technology company of my own, and independent engineering across agents, RAG, machine learning and full-stack products."
+        intro="An AI engineering internship, a technology company of my own, and independent engineering across agents, RAG, machine learning and full-stack products."
       >
         {profile.resume.href && (
           <a

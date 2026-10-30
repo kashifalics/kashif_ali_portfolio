@@ -40,15 +40,14 @@ Left out deliberately: `Facebook-Post-Manager-system` (no README to describe it 
 
 ## Decisions the owner should confirm
 
-1. **Spadasoft.** The brief says *AI Automation Intern, 1 July – 31 August 2026*. The resume says
-   *AI Engineer Intern, Jun 2026 – Aug 2026*. The site follows the brief.
+1. **Spadasoft.** Resolved 2026-10-30: AI Engineer Intern, June – August 2026, matching the resume.
 2. **Degree status.** Both resumes show the BS as *2023 – 2027*, so the biography says
    "computer science student" rather than "graduate", and the Education card shows 2023 – 2027.
 3. **LinkedIn URL** was taken from your earlier portfolio
    (`linkedin.com/in/muhammad-kashif-ali-7940a9310`). Confirm it.
 4. **Resume.** `public/documents` holds `Kashif-ali-resume (1) (1).pdf`, supplied by the owner.
    It includes a phone number, which anyone who downloads it will see. Its job title for
-   Spadasoft (AI Engineer Intern) differs from the site's (see 1).
+   Spadasoft (AI Engineer Intern, June – August 2026) matches the site.
 5. **Voice agent ownership.** Marked as an internship project because the resume lists it under
    Spadasoft. The client hotel is not named on the site.
 6. **Kashzo client sites.** Your exact role and each site's stack are not recorded anywhere;

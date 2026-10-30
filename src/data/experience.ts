@@ -11,8 +11,8 @@ export type ExperienceItem = {
 export const experience: ExperienceItem[] = [
   {
     organisation: "Spadasoft",
-    role: "AI Automation Intern",
-    period: "1 July 2026 – 31 August 2026",
+    role: "AI Engineer Intern",
+    period: "June 2026 – August 2026",
     kind: "Internship",
     description:
       "Worked on AI automation and intelligent software development, gaining practical exposure to applying AI technologies to real-world workflows.",
