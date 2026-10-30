@@ -187,6 +187,7 @@ export const projects: Project[] = [
     ownership: "Kashzo Solutions",
     order: 2,
     year: "2026",
+    role: "Designed and developed the site, through Kashzo Solutions",
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Vercel"],
     liveUrl: "https://saqinova.com",
     cover: {
@@ -213,7 +214,6 @@ export const projects: Project[] = [
       { src: "/images/projects/saqinova-home.png", alt: "Saqinova homepage on desktop", caption: "Homepage on desktop", width: 1920, height: 1080 },
       { src: "/images/projects/saqinova-pricing-showcase.webp", alt: "Saqinova pricing section", caption: "Pricing, presented up front", width: 1180, height: 655 },
     ],
-    pending: ["Confirm your personal role on the build (design, development or both)."],
   },
 
   {

@@ -13,7 +13,8 @@ Audited 2026-10-30 from the local workspace (`Desktop/`), the public GitHub repo
 | AI-Powered PDF Query System | Generative AI & RAG | Independent | Completed | Public README (Pinecone, OpenAI, Streamlit) | PDF-Q-A-System | — |
 | Real-Time Emotion Analysis | AI, ML | Independent | Prototype | Public README (OpenCV, Gemini, pyttsx3) | AI-Powered-Real-Time-Emotion-Analysis-System | — |
 | Kashzo Solutions Website | Business, Full-Stack | Kashzo Solutions | Live | Local repo `kashzo/` | Private | kashzo.com |
-| Kashzo Client Websites | Business | Kashzo Solutions | Live | Listed with screenshots on kashzo.com | — | devnique.com, trendbox.uk, valorin.uk, saqinova.com |
+| Saqinova Website | Business, Full-Stack | Kashzo Solutions (owner designed and developed it) | Live | Kashzo case study: Next.js, React, TypeScript, Tailwind CSS, Vercel; owner confirmed role 2026-10-30 | Private | saqinova.com |
+| Kashzo Client Websites | Business | Kashzo Solutions | Live | Listed with screenshots on kashzo.com | — | devnique.com, trendbox.uk, valorin.uk |
 | Kashzo Outreach | AI Automation, Business | Kashzo Solutions | In Progress | Local README: code-complete for a supervised pilot | Private | — |
 | JAP Roofing Homepage Concept | Business | Client Demonstration | Concept | Public README states it is a concept | demos | — |
 | The Apex Trader | Business, Full-Stack | Independent | In Progress | Local repo with owner TODO list | Private | — |
