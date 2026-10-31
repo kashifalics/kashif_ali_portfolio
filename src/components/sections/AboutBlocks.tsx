@@ -40,11 +40,10 @@ export function PortraitCard({ className }: { className?: string }) {
 
 export function Interests() {
   return (
-    <ul className="flex flex-wrap gap-x-2 gap-y-2 text-[15px] text-fg-2">
-      {interests.map((it, i) => (
-        <li key={it}>
+    <ul className="flex flex-wrap gap-2">
+      {interests.map((it) => (
+        <li key={it} className="rounded-full border border-line bg-card px-3.5 py-1.5 text-[13.5px] text-fg-2 transition-colors hover:border-cyan hover:text-fg">
           {it}
-          {i < interests.length - 1 && <span className="ml-2 text-fg-3">/</span>}
         </li>
       ))}
     </ul>

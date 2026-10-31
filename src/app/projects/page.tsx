@@ -32,7 +32,7 @@ export default function ProjectsPage() {
       />
       <Section className="pt-0 md:pt-0">
         <Container>
-          <ProjectGrid projects={projects} categories={usedCategories} />
+          <ProjectGrid projects={projects} categories={usedCategories} headingLevel={2} />
           <dl className="mt-16 grid gap-6 border-t border-line pt-8 text-sm sm:grid-cols-2 lg:grid-cols-5">
             {legend.map(([k, v]) => (
               <div key={k}>

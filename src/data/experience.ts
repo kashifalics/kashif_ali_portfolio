@@ -23,7 +23,7 @@ export const experience: ExperienceItem[] = [
     role: "Founder",
     kind: "Founder",
     description:
-      "Building a technology company focused on web development, AI automation, and digital products.",
+      "Building a technology business focused on web development, AI automation, and digital products.",
     related: [
       { label: "Saqinova", href: "/projects/saqinova-website" },
       { label: "Kashzo website", href: "/projects/kashzo-solutions-website" },
@@ -35,8 +35,8 @@ export const experience: ExperienceItem[] = [
     role: "AI Engineer / Software Developer",
     kind: "Independent",
     description:
-      "Developing independent engineering projects across agentic AI, RAG, machine learning, intelligent automation, and full-stack application development.",
-    related: [{ label: "AI Job Apply Agent", href: "/projects/ai-job-apply-agent" }],
+      "Developing independent engineering projects across agentic AI, retrieval-augmented generation, machine learning, intelligent automation, and full-stack application development.",
+    related: [{ label: "AI Job Apply Agent", href: "/projects/job-apply-agent" }],
   },
 ];
 
@@ -61,7 +61,9 @@ export const kashzo = {
   role: "Founder",
   headline: "Building Technology Beyond the Code.",
   description:
-    "Alongside my engineering work, I am building Kashzo Solutions — a technology business focused on helping businesses establish stronger digital experiences and adopt practical technology solutions.",
+    "Alongside my engineering journey, I am building Kashzo Solutions — a technology business focused on creating better digital experiences and helping businesses adopt practical technology solutions.",
+  /** The owner's own description of his part in the company. */
+  founderRole: ["Technical development", "Product planning", "Solution architecture", "Client communication", "Business development", "Digital strategy"],
   logo: { src: "/images/kashzo/kashzo-logo.png", width: 1838, height: 475, alt: "Kashzo Solutions" },
   website: "https://www.kashzo.com",
   services: [

@@ -41,7 +41,7 @@ All content lives in `src/data/`; components only render it.
 |---|---|
 | `src/data/profile.ts` | Name, titles, hero copy, **email**, **GitHub/LinkedIn URLs**, **resume path**, **photo path and crop**, the three dimensions, interests, philosophy |
 | `src/data/projects.ts` | Every project and case study. A field left out is hidden on the page |
-| `src/data/skills.ts` | Skill groups (each skill can name where it was used) and the scrolling strip |
+| `src/data/skills.ts` | Skill groups; each skill lists the slugs of projects that use it, and its chip links to that case study |
 | `src/data/experience.ts` | Experience timeline, education, Kashzo Solutions details |
 
 Set any link, the email or the resume path to `""` to hide it everywhere.

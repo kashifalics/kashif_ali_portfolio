@@ -4,7 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ExternalLink, Lock } from "lucide-react";
 import { getProject, sortedProjects } from "@/data/projects";
-import { withAvailableAssets } from "@/lib/assets";
+import { toCard, withAvailableAssets } from "@/lib/assets";
+import { ProjectCard } from "@/components/projects/ProjectCard";
 import { Container } from "@/components/ui/primitives";
 import { GitHubIcon } from "@/components/ui/icons";
 import { ProjectMedia } from "@/components/projects/ProjectMedia";
@@ -63,6 +64,11 @@ export default async function ProjectPage({ params }: Props) {
   const project = withAvailableAssets(raw);
 
   const index = sortedProjects.findIndex((p) => p.slug === slug);
+  // Up to three other projects sharing an area with this one, in display order.
+  const related = sortedProjects
+    .filter((p) => p.slug !== slug && p.categories.some((c) => raw.categories.includes(c)))
+    .slice(0, 3)
+    .map(toCard);
   const prev = sortedProjects[index - 1];
   const next = sortedProjects[index + 1];
 
@@ -96,7 +102,7 @@ export default async function ProjectPage({ params }: Props) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-blue px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#1d4ed8]"
               >
-                Live demo <ExternalLink size={15} />
+                {project.linkLabel ?? "Live demo"} <ExternalLink size={15} />
               </a>
             )}
             {project.repoUrl && (
@@ -299,6 +305,21 @@ export default async function ProjectPage({ params }: Props) {
             </Block>
           )}
         </div>
+
+        {related.length > 0 && (
+          <section aria-labelledby="related-title" className="border-t border-line py-12 md:py-16">
+            <h2 id="related-title" className="text-xl font-semibold lg:text-2xl">
+              Related projects
+            </h2>
+            <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {related.map((r) => (
+                <li key={r.slug}>
+                  <ProjectCard project={r} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <nav aria-label="More projects" className="mt-6 grid gap-4 border-t border-line pt-10 sm:grid-cols-2">
           {prev ? (

@@ -8,12 +8,12 @@ export const profile = {
   initials: "KA",
   title: "AI Engineer & Entrepreneur",
   subtitle: "AI Engineer | Software Developer | Product Builder",
-  eyebrow: "AI Engineer · Entrepreneur · Software Developer",
+  eyebrow: "AI Engineer · Entrepreneur · Product Builder",
   location: "Lahore, Pakistan",
-  /** Hero headline: the highlighted line is drawn in cyan with a hand-drawn underline. */
-  headline: { before: "Where AI Meets", highlight: "Engineering.", after: "Where Ideas Become Products." },
+  /** Hero headline: the first line in white, the second in cyan over a hand-drawn underline. */
+  headline: { first: "I Build Intelligent Systems.", second: "I Turn Ideas Into Reality." },
   intro:
-    "I'm Muhammad Kashif Ali — an AI engineer and entrepreneur passionate about building intelligent applications, autonomous workflows, and digital products that solve real-world problems.",
+    "I'm Muhammad Kashif Ali. I engineer AI-powered applications, intelligent agents, and automation systems — transforming ambitious ideas into practical digital products.",
   positioning:
     "I build AI-powered applications, intelligent agents, automation workflows, and full-stack products that transform complex ideas into practical digital solutions.",
 
@@ -50,7 +50,7 @@ export const profile = {
 
 /** The row under the hero: where things stand, each item checkable. */
 export const facts: { term: string; value: string; href?: string }[] = [
-  { term: "Building", value: "Job Apply Agent, live in production", href: "/projects/ai-job-apply-agent" },
+  { term: "Building", value: "Job Apply Agent, live in production", href: "/projects/job-apply-agent" },
   { term: "Running", value: "Kashzo Solutions Ltd., as founder", href: "/#kashzo" },
   { term: "Most recently", value: "AI Engineer Intern, Spadasoft (Jun–Aug 2026)", href: "/experience" },
   { term: "Studying", value: "BS Computer Science, Virtual University (2023–2027)" },
@@ -58,11 +58,13 @@ export const facts: { term: string; value: string; href?: string }[] = [
 
 /** Personal interests, as the owner listed them. */
 export const interests = [
-  "Forex and quantitative trading",
+  "Forex trading",
+  "Quantitative trading",
   "Financial markets",
   "Entrepreneurship",
   "Technology research",
-  "History and historical places",
+  "History",
+  "Historical places",
   "Travel",
   "Continuous learning",
 ] as const;
@@ -71,17 +73,17 @@ export const interests = [
 export const philosophy = [
   {
     step: "Understand",
-    body: "Understand the actual problem and user requirements.",
+    body: "Understand the real problem, users, and requirements.",
     example: "job boards that forbid scraping are never read automatically; people paste the job or its company link instead.",
   },
   {
     step: "Architect",
-    body: "Design the architecture, data flow, APIs, and integrations.",
+    body: "Design system architecture, data flows, APIs, and integrations.",
     example: "LLMs only read and write language; scoring, grounding checks and application status are plain, testable code.",
   },
   {
     step: "Engineer",
-    body: "Develop robust, maintainable, and functional solutions.",
+    body: "Build maintainable software, intelligent systems, and functional applications.",
     example: "a Postgres trigger refuses any application that skips approval, tested with direct SQL as the API role.",
   },
   {

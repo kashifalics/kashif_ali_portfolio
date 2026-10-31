@@ -139,6 +139,42 @@
     animation: draw-loop 5s ease infinite;
   }
 
+  /* Entrance effects (reference values: 1.25s, full-width slides, 30% zoom).
+     Elements start hidden; Animate adds .anim-in once they scroll into view. */
+  .anim {
+    opacity: 0;
+    transition:
+      opacity 1.25s cubic-bezier(0.215, 0.61, 0.355, 1),
+      transform 1.25s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  .anim-fadeInLeft {
+    transform: translate3d(-100%, 0, 0);
+  }
+  .anim-fadeInRight {
+    transform: translate3d(100%, 0, 0);
+  }
+  .anim-fadeInUp {
+    transform: translate3d(0, 100%, 0);
+  }
+  .anim-zoomIn {
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  .anim.anim-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Hero load sequence: lines rise from below their mask, the rest fades up. */
+  .hero-line {
+    animation: hero-line 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .hero-rise {
+    animation: hero-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .hero-pop {
+    animation: hero-pop 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
   .flow-dash {
     stroke-dasharray: 4 6;
     animation: dash 1.6s linear infinite;
@@ -173,6 +209,26 @@
   }
 }
 
+@keyframes hero-line {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes hero-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -187,8 +243,16 @@
     scroll-behavior: auto;
   }
   .flow-dash,
-  .draw-loop {
+  .draw-loop,
+  .hero-line,
+  .hero-rise,
+  .hero-pop {
     animation: none;
+  }
+  .anim {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
   /* No turning: the back simply fades in over the front. */
   .flip-inner {

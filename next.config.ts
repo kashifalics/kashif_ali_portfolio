@@ -5,6 +5,13 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  // Case-study addresses that moved; old links keep working.
+  async redirects() {
+    return [
+      { source: "/projects/ai-job-apply-agent", destination: "/projects/job-apply-agent", permanent: true },
+      { source: "/projects/rag-multi-pdf-chatbot", destination: "/projects/multi-pdf-rag-chatbot", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

@@ -7,11 +7,11 @@ import { Animate } from "@/components/ui/Animate";
 
 export const contactHeading = "Let's Build Something Meaningful.";
 export const contactIntro =
-  "I'm open to connecting with people interested in AI engineering, software development, intelligent automation, product building, and technology entrepreneurship.";
+  "I'm always interested in connecting with people working on AI engineering, software development, intelligent automation, and innovative digital products.";
 
 export function ContactCta() {
   return (
-    <Section labelledBy="cta-title" className="border-t border-line">
+    <Section id="contact" labelledBy="cta-title" className="border-t border-line">
       <Container className="grid gap-10 lg:grid-cols-[1fr_24rem] lg:items-end lg:gap-16">
         <Animate effect="zoomIn">
           <h2 id="cta-title" className="max-w-3xl text-4xl leading-[1.02] font-semibold tracking-[-0.03em] sm:text-6xl">

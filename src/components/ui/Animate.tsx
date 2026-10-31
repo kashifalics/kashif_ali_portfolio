@@ -1,27 +1,21 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { cn } from "@/lib/site";
 
 /**
- * Entrance animations, played once as the element scrolls into view. The
- * values match the reference site's: 1.25s, full-width slides, a 30% zoom.
+ * Entrance animations, played once as the element scrolls into view, with the
+ * reference site's values (1.25s, full-width slides, a 30% zoom). Pure CSS
+ * (.anim-* in globals.css) driven by one IntersectionObserver per element;
+ * with reduced motion the CSS shows everything at rest.
  */
-const effects = {
-  fadeIn: { hidden: { opacity: 0 }, shown: { opacity: 1 } },
-  fadeInLeft: { hidden: { opacity: 0, x: "-100%" }, shown: { opacity: 1, x: 0 } },
-  fadeInRight: { hidden: { opacity: 0, x: "100%" }, shown: { opacity: 1, x: 0 } },
-  fadeInUp: { hidden: { opacity: 0, y: "100%" }, shown: { opacity: 1, y: 0 } },
-  zoomIn: { hidden: { opacity: 0, scale: 0.3 }, shown: { opacity: 1, scale: 1 } },
-} as const;
-
-export type Effect = keyof typeof effects;
+export type Effect = "fadeIn" | "fadeInLeft" | "fadeInRight" | "fadeInUp" | "zoomIn";
 
 export function Animate({
   effect = "fadeIn",
   delay = 0,
   className,
-  as = "div",
+  as: Tag = "div",
   children,
 }: {
   effect?: Effect;
@@ -31,22 +25,40 @@ export function Animate({
   as?: "div" | "li" | "section";
   children: ReactNode;
 }) {
-  const reduce = useReducedMotion();
-  const Tag = motion[as];
-  if (reduce) {
-    const Plain = as;
-    return <Plain className={className}>{children}</Plain>;
-  }
+  const ref = useRef<HTMLElement>(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -60px 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // The observed element never moves; only the inner one is offset. Watching a
+  // translated element would report its shifted position, so a card sliding up
+  // from 100% lower could stay hidden until the reader scrolled past it.
   return (
     <Tag
+      // The ref type differs per tag; all three are HTMLElements.
+      ref={ref as never}
       className={className}
-      variants={effects[effect]}
-      initial="hidden"
-      whileInView="shown"
-      viewport={{ once: true, margin: "0px 0px -60px 0px" }}
-      transition={{ duration: 1.25, delay, ease: [0.215, 0.61, 0.355, 1] }}
     >
-      {children}
+      <div
+        className={cn("anim h-full", `anim-${effect}`, shown && "anim-in")}
+        style={delay ? { transitionDelay: `${delay}s` } : undefined}
+      >
+        {children}
+      </div>
     </Tag>
   );
 }

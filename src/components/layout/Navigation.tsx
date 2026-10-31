@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { navItems, cn } from "@/lib/site";
 import { profile } from "@/data/profile";
@@ -95,15 +94,10 @@ export function Navigation() {
         </div>
       </nav>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
+      {open && (
+          <div
             id="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="border-t border-line px-2 pb-3 lg:hidden"
+            className="border-t border-line px-2 pb-3 motion-safe:animate-[fade-in_0.2s_ease-out] lg:hidden"
           >
             <ul>
               {navItems.map((item) => {
@@ -126,9 +120,8 @@ export function Navigation() {
                 );
               })}
             </ul>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
     </header>
   );
 }

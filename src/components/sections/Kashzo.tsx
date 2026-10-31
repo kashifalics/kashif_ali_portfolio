@@ -34,6 +34,13 @@ export function Kashzo() {
               <p className="mt-4 text-sm text-fg-3">
                 {kashzo.role}, {kashzo.name}
               </p>
+              <ul className="mt-4 flex flex-wrap gap-2" aria-label="My role in the company">
+                {kashzo.founderRole.map((r) => (
+                  <li key={r} className="rounded-full border border-line bg-card px-3 py-1.5 text-[13px] text-fg-2">
+                    {r}
+                  </li>
+                ))}
+              </ul>
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
                 <a href={kashzo.website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-semibold text-cyan hover:underline">
                   kashzo.com <ExternalLink size={14} />

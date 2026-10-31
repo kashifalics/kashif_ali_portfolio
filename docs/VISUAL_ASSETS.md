@@ -22,6 +22,7 @@ placeholder. Generated illustrations have been removed.
 | AI-Powered PDF Query System | Pipeline | Read from `app.py` (public repo) |
 | Real-Time Emotion Analysis | Pipeline | Read from `app.py` (public repo) |
 | Kashzo Outreach | Pipeline | Read from its README and package layout |
+| SEO Performance Engine, OCR Automation, Voice Calling Agent, Educational Learning Platform | Flow | From the public kashzo.com case studies (clients confidential) |
 | The Apex Trader | Homepage | Owner's capture of the-apex-trader.vercel.app, cropped to the site (original in `design-reference/`) |
 
 Not shown: **Product Review Sentiment Analyzer** is hidden (`hidden: true` in
@@ -36,18 +37,36 @@ here. Capture them yourself, then send them or save them where listed. Use a des
 about 1440 px wide, crop to the app (no browser tabs, address bar or taskbar), and use public
 or sample documents only.
 
+### AI Job Apply Agent (https://job-agent-langgraph.vercel.app)
+
+The Overview dashboard is already on the site. Sign in with a test account that holds sample
+data (not your real job search), then capture each page at about 1440 px wide, cropped to the
+app, with the account email in the sidebar covered:
+
+| Page to open | What should be visible | Save as |
+|---|---|---|
+| Profile → Import | A resume being imported, or its confirmed facts | `public/images/projects/job-apply-agent/resume-import.png` |
+| Profile | Confirmed roles and skills, with evidence | `public/images/projects/job-apply-agent/profile.png` |
+| Jobs | The job list with sources | `public/images/projects/job-apply-agent/jobs.png` |
+| Matches | A match score with the evidence behind it | `public/images/projects/job-apply-agent/matches.png` |
+| Applications | An application waiting for review or approved | `public/images/projects/job-apply-agent/applications.png` |
+| Documents | A tailored resume or cover letter | `public/images/projects/job-apply-agent/documents.png` |
+
+Each one is added to `screenshots` of the `job-apply-agent` entry in `src/data/projects.ts`
+(see "Adding a capture" below) and appears under "In use" on the case study.
+
 ### Multi-PDF RAG Chatbot (`Desktop/new_rag_chatbot/rag_multi_pdf_chatbot`)
 
 Run `streamlit run app.py`. Use two public PDFs, e.g. *Attention Is All You Need*
 (`Desktop/rag chatbot/data/`) and the BERT paper (arxiv.org/pdf/1810.04805).
 
 1. **Upload** — New Chat, both PDFs selected, after **Process Documents**: the sidebar lists
-   both documents. → `public/images/projects/rag-chatbot/upload.png`
+   both documents. → `public/images/projects/multi-pdf-rag-chatbot/upload.png`
 2. **Answer with sources** — ask "What is multi-head attention and why is it used?"; capture
    the answer with its source citations expanded (filename, page, relevance).
-   → `public/images/projects/rag-chatbot/answer.png`
+   → `public/images/projects/multi-pdf-rag-chatbot/answer.png`
 3. **Not found** — ask something neither paper covers (e.g. "What is the capital of
-   France?"), showing the honest fallback. → `public/images/projects/rag-chatbot/not-found.png`
+   France?"), showing the honest fallback. → `public/images/projects/multi-pdf-rag-chatbot/not-found.png`
 
 Note: the OpenAI key in that folder's `.env` is rejected by OpenAI (401), so put a working
 key in first.
@@ -57,18 +76,18 @@ key in first.
 Run `uvicorn app:app --reload` and open `http://127.0.0.1:8000/docs`.
 
 1. **API** — the Swagger page listing `POST /upload` and `POST /chat`.
-   → `public/images/projects/langgraph/api.png`
+   → `public/images/projects/langgraph-pdf-query/api.png`
 2. **Answer** — after uploading a public PDF, `POST /chat` → *Try it out* with a question, showing
-   the JSON answer. → `public/images/projects/langgraph/chat.png`
+   the JSON answer. → `public/images/projects/langgraph-pdf-query/chat.png`
 
 ### AI Room Service Voice Agent (`Desktop/hotel-voice-agent`)
 
 1. **Call transcript** — VAPI dashboard → Call Logs → one test call: the transcript showing
-   the guest ordering and the `place_order` tool call. → `public/images/projects/voice-agent/transcript.png`
+   the guest ordering and the `place_order` tool call. → `public/images/projects/ai-room-service-voice-agent/transcript.png`
 2. **Call recording** — the same call's audio waveform/player, if VAPI shows one.
-   → `public/images/projects/voice-agent/recording.png`
+   → `public/images/projects/ai-room-service-voice-agent/recording.png`
 3. **Staff dashboard** — `streamlit run dashboard.py` with **test orders only**.
-   → `public/images/projects/voice-agent/dashboard.png`
+   → `public/images/projects/ai-room-service-voice-agent/dashboard.png`
 
 Before sharing: the dashboard's title shows the hotel's name and orders show guest names and
 room numbers. Blur or crop them; the site never names the hotel.
@@ -88,7 +107,7 @@ room numbers. Blur or crop them; the site never names the hotel.
 
    ```ts
    cover: {
-     src: "/images/projects/rag-chatbot/answer.png",
+     src: "/images/projects/multi-pdf-rag-chatbot/answer.png",
      alt: "What the screenshot shows, in one sentence",
      width: 1440,
      height: 900,

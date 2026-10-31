@@ -15,6 +15,10 @@ Audited 2026-10-30 from the local workspace (`Desktop/`), the public GitHub repo
 | Kashzo Solutions Website | Business, Full-Stack | Kashzo Solutions | Live | Local repo `kashzo/` | Private | kashzo.com |
 | Saqinova Website | Business, Full-Stack | Kashzo Solutions (owner designed and developed it) | Live | Kashzo case study: Next.js, React, TypeScript, Tailwind CSS, Vercel; owner confirmed role 2026-10-30 | Private | saqinova.com |
 | Kashzo Client Websites | Business | Kashzo Solutions | Live | Listed with screenshots on kashzo.com | — | devnique.com, trendbox.uk, valorin.uk |
+| AI-Powered SEO Performance Engine | AI Automation, SaaS | Kashzo Solutions | Completed | Public case study on kashzo.com (client confidential) | — | kashzo.com/projects/seo-performance-optimisation-engine |
+| OCR Automation Using AWS Textract | AI Automation | Kashzo Solutions | Completed | Public case study on kashzo.com (client confidential) | — | kashzo.com/projects/ocr-automation-aws-textract |
+| AI Voice Calling Agent for Lead Generation | AI Automation | Kashzo Solutions | Completed | Public case study on kashzo.com (client confidential) | — | kashzo.com/projects/voice-calling-agent-lead-generation |
+| Educational Learning Platform | Full-Stack, SaaS | Kashzo Solutions | Completed | Public case study on kashzo.com (client confidential) | — | kashzo.com/projects/educational-learning-platform |
 | Kashzo Outreach | AI Automation, Business | Kashzo Solutions | In Progress | Local README: code-complete for a supervised pilot | Private | — |
 | JAP Roofing Homepage Concept | Business | Client Demonstration | Concept | Public README states it is a concept | demos | — |
 | The Apex Trader | Business, Full-Stack | Independent | In Progress | Local repo with owner TODO list | Private | — |
@@ -22,6 +26,13 @@ Audited 2026-10-30 from the local workspace (`Desktop/`), the public GitHub repo
 | Loan Approval Prediction | Machine Learning | Independent | Completed | Public notebook | Loan-approval-prediction | — |
 | Weather Condition Prediction | Machine Learning | Independent | Completed | Public README and notebook | Weather-Forcast-Prediction | — |
 | Product Review Sentiment Analyzer | Machine Learning | Independent | Prototype | Local `projects/nlp sentiment analysis/app.py` | — | — |
+
+Case-study addresses changed on 2026-10-31: `/projects/job-apply-agent` (was
+`ai-job-apply-agent`) and `/projects/multi-pdf-rag-chatbot` (was `rag-multi-pdf-chatbot`); the
+old addresses redirect permanently (`next.config.ts`).
+
+Kashzo's site also lists a hotel voice agent and an enterprise RAG assistant; these are the
+AI Room Service Voice Agent and the RAG work already listed, so they are not duplicated.
 
 ## Listed in the brief but not found
 
@@ -40,6 +51,7 @@ Left out deliberately: `Facebook-Post-Manager-system` (no README to describe it 
 
 ## Decisions the owner should confirm
 
+
 1. **Spadasoft.** Resolved 2026-10-30: AI Engineer Intern, June – August 2026, matching the resume.
 2. **Degree status.** Both resumes show the BS as *2023 – 2027*, so the biography says
    "computer science student" rather than "graduate", and the Education card shows 2023 – 2027.
@@ -53,3 +65,9 @@ Left out deliberately: `Facebook-Post-Manager-system` (no README to describe it 
    the card says only that they were delivered through Kashzo Solutions.
 7. **LangGraph PDF Query System.** The brief mentions AWS EC2; nothing in the code shows it, so
    it is not listed.
+8. **Your role on the four Kashzo case studies** (SEO engine, Textract OCR, voice calling agent,
+   learning platform). Kashzo's pages describe the projects, not who built them; the cards say
+   "Built through Kashzo Solutions" only. Add `role` to each entry once confirmed.
+9. **Spadasoft wording.** The V2 brief says "AI Automation Intern, 1 July – 31 August 2026";
+   the site keeps "AI Engineer Intern, June – August 2026", which you confirmed on 2026-10-30
+   and which matches your resume.

@@ -100,8 +100,12 @@ export type Project = {
   code?: CodeExcerpt;
   /** Kept in the data but left off the site. */
   hidden?: boolean;
+  /** Category line shown on the flagship, e.g. "AI Agents | Full-Stack Development". */
+  categoryLine?: string;
   repoUrl?: string;
   liveUrl?: string;
+  /** Text for the live link when it is not a demo, e.g. a case study elsewhere. */
+  linkLabel?: string;
   /** Why a link is missing, e.g. a private repository. */
   linkNote?: string;
   year?: string;

@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Bot, Database, Globe, Puzzle, Server, User } from "lucide-react";
 import type { ArchitectureNode } from "@/types";
 import { cn } from "@/lib/site";
@@ -29,7 +28,6 @@ export function ArchitectureDiagram({
   title?: string;
 }) {
   const [selected, setSelected] = useState(nodes[0]?.id);
-  const reduce = useReducedMotion();
 
   const lanes = useMemo(() => {
     const byLane = new Map<number, ArchitectureNode[]>();
@@ -107,17 +105,10 @@ export function ArchitectureDiagram({
         </div>
 
         <div className="border-t border-line bg-bg-2/50 p-5 sm:p-6 lg:border-t-0 lg:border-l" aria-live="polite">
-          <AnimatePresence mode="wait">
-            {current && (
-              <motion.div
-                key={current.id}
-                initial={reduce ? false : { opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reduce ? undefined : { opacity: 0, y: -8 }}
-                transition={{ duration: 0.22 }}
-              >
+          {current && (
+              <div key={current.id} className="motion-safe:animate-[fade-in_0.22s_ease-out]">
                 <p className="label">{current.tech ?? "Component"}</p>
-                <h4 className="mt-2 text-xl font-semibold">{current.label}</h4>
+                <h3 className="mt-2 text-xl font-semibold">{current.label}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-fg-2">{current.detail}</p>
                 {connected.length > 0 && (
                   <div className="mt-6">
@@ -137,9 +128,8 @@ export function ArchitectureDiagram({
                     </ul>
                   </div>
                 )}
-              </motion.div>
+              </div>
             )}
-          </AnimatePresence>
         </div>
       </div>
     </div>

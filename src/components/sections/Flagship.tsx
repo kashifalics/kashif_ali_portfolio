@@ -28,6 +28,7 @@ export function Flagship({ project }: { project: Project }) {
             <h2 id="flagship-title" className="mt-4 text-5xl leading-[0.98] font-semibold tracking-[-0.03em] sm:text-6xl lg:text-7xl">
               {project.name}
             </h2>
+            {project.categoryLine && <p className="mt-4 font-mono text-xs text-fg-3 sm:text-[13px]">{project.categoryLine}</p>}
           </Animate>
           <Animate effect="fadeInRight" delay={0.3}>
             <p className="text-[15px] leading-relaxed text-fg-2">{project.summary}</p>
@@ -55,25 +56,29 @@ export function Flagship({ project }: { project: Project }) {
           </Link>
         </Animate>
 
-        <dl className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {evidence.map(({ figure, label, v, Icon }, i) => (
             <Animate
               key={label}
+              as="li"
               effect="fadeInUp"
               delay={0.5 + i * 0.1}
-              className="group rounded-2xl border border-line bg-card p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-line-strong hover:shadow-[0_24px_50px_-28px_rgba(56,189,248,0.45)]"
             >
-              <span className="grid size-11 place-items-center rounded-xl bg-blue/15 text-cyan transition-colors duration-300 group-hover:bg-blue group-hover:text-white">
-                <Icon size={20} strokeWidth={1.8} aria-hidden />
-              </span>
-              <dt className="mt-6 flex items-baseline gap-2">
-                <span className="font-display text-4xl font-semibold tracking-tight text-fg">{figure}</span>
-                <span className="text-[15px] font-medium text-fg">{label}</span>
-              </dt>
-              <dd className="mt-2 text-sm leading-relaxed text-fg-2">{v}</dd>
+              <div className="group h-full rounded-2xl border border-line bg-card p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-line-strong hover:shadow-[0_24px_50px_-28px_rgba(56,189,248,0.45)]">
+              <div>
+                <span className="grid size-11 place-items-center rounded-xl bg-blue/15 text-cyan transition-colors duration-300 group-hover:bg-blue group-hover:text-white">
+                  <Icon size={20} strokeWidth={1.8} aria-hidden />
+                </span>
+                <span className="mt-6 flex items-baseline gap-2">
+                  <span className="font-display text-4xl font-semibold tracking-tight text-fg">{figure}</span>
+                  <span className="text-[15px] font-medium text-fg">{label}</span>
+                </span>
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-fg-2">{v}</p>
+              </div>
             </Animate>
           ))}
-        </dl>
+        </ul>
 
         <ul className="mt-8 flex flex-wrap gap-2" aria-label="Technology stack">
           {project.stack.map((s, i) => (

@@ -34,10 +34,10 @@ export default async function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", maxWidth: 700 }}>
-          <div style={{ fontSize: 22, color: "#38bdf8", letterSpacing: 3 }}>AI ENGINEER · ENTREPRENEUR</div>
+          <div style={{ fontSize: 22, color: "#38bdf8", letterSpacing: 3 }}>AI ENGINEER · ENTREPRENEUR · PRODUCT BUILDER</div>
           <div style={{ fontSize: 68, fontWeight: 700, marginTop: 24, lineHeight: 1.05 }}>{profile.name}</div>
           <div style={{ fontSize: 30, color: "#a8b5c7", marginTop: 24, lineHeight: 1.3 }}>
-            Where AI meets engineering. Where ideas become products.
+            I build intelligent systems. I turn ideas into reality.
           </div>
         </div>
         {photo && (

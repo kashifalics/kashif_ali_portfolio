@@ -63,7 +63,7 @@ export default function HomePage() {
 
       <Section id="skills" labelledBy="skills-title" className="pt-0 md:pt-4">
         <Container>
-          <SectionHeading id="skills-title" title="Technical skills" intro="Grouped by area. Where a skill is used in a project on this site, the project is named beside it." />
+          <SectionHeading id="skills-title" title="Technical skills" intro="Grouped by area. Skills with a cyan dot are used in projects on this site: select one to open the project." />
           <div className="mt-10">
             <SkillsDashboard />
           </div>

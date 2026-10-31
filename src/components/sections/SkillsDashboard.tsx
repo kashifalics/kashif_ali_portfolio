@@ -1,25 +1,74 @@
+import Link from "next/link";
+import { Bot, Boxes, Braces, Database, Layers, LayoutTemplate, Library, Network, Server, Workflow } from "lucide-react";
 import { skillGroups } from "@/data/skills";
+import { sortedProjects } from "@/data/projects";
 import { Animate } from "@/components/ui/Animate";
 
-/** Skills grouped by area; each names where it was used, if anywhere on this site. */
+const icons: Record<string, typeof Bot> = {
+  programming: Braces,
+  ai: Network,
+  agentic: Bot,
+  rag: Layers,
+  frontend: LayoutTemplate,
+  backend: Server,
+  data: Database,
+  infra: Boxes,
+  automation: Workflow,
+  libraries: Library,
+};
+
+const projectName = new Map(sortedProjects.map((p) => [p.slug, p.name]));
+
+/**
+ * One card per area, skills as chips. A skill used in a project on this site
+ * has a cyan dot and links to that project's case study.
+ */
 export function SkillsDashboard() {
   return (
-    <dl className="grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-      {skillGroups.map((g, i) => (
-        <Animate key={g.key} effect="fadeInUp" delay={(i % 3) * 0.15}>
-          <dt className="border-b border-line pb-3 font-display text-lg font-medium text-fg">{g.title}</dt>
-          <dd>
-            <ul className="mt-3 space-y-2.5">
-              {g.items.map((s) => (
-                <li key={s.name} className="grid grid-cols-[minmax(0,auto)_1fr] items-baseline gap-3 text-sm">
-                  <span className="text-fg">{s.name}</span>
-                  <span className="truncate text-right text-[12.5px] text-fg-3">{s.usedIn ?? ""}</span>
-                </li>
-              ))}
+    <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {skillGroups.map((g, i) => {
+        const Icon = icons[g.key] ?? Braces;
+        return (
+          <Animate
+            key={g.key}
+            as="li"
+            effect="fadeInUp"
+            delay={(i % 3) * 0.15}
+          >
+            <div className="group h-full rounded-2xl border border-line bg-card p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-line-strong">
+            <div className="flex items-center gap-3">
+              <span className="grid size-10 place-items-center rounded-xl bg-blue/15 text-cyan transition-colors duration-300 group-hover:bg-blue group-hover:text-white">
+                <Icon size={18} strokeWidth={1.8} aria-hidden />
+              </span>
+              <h3 className="font-display text-lg font-semibold tracking-tight">{g.title}</h3>
+            </div>
+            <ul className="mt-5 flex flex-wrap gap-2">
+              {g.items.map((s) => {
+                const used = (s.projects ?? []).filter((slug) => projectName.has(slug));
+                const chip = "inline-flex items-center gap-1.5 rounded-full border border-line bg-bg-2 px-3 py-1.5 text-[13px] text-fg-2";
+                return (
+                  <li key={s.name}>
+                    {used.length > 0 ? (
+                      <Link
+                        href={`/projects/${used[0]}`}
+                        title={`Used in: ${used.map((u) => projectName.get(u)).join(", ")}`}
+                        className={`${chip} transition-colors hover:border-cyan hover:text-fg`}
+                      >
+                        <span className="size-1.5 rounded-full bg-cyan" aria-hidden />
+                        {s.name}
+                        <span className="sr-only">, used in {used.map((u) => projectName.get(u)).join(", ")}</span>
+                      </Link>
+                    ) : (
+                      <span className={chip}>{s.name}</span>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
-          </dd>
-        </Animate>
-      ))}
-    </dl>
+            </div>
+          </Animate>
+        );
+      })}
+    </ul>
   );
 }

@@ -1,127 +1,113 @@
 /**
- * Technical skills. `usedIn` names projects on this site that use the skill,
- * so every entry points at evidence rather than a self-rated percentage.
+ * Technical skills, grouped by area. `projects` lists the slugs of projects on
+ * this site that use the skill: the chip links to the first, and its tooltip
+ * names them all. A skill with no projects is studied but not shown in work here.
  */
 export type SkillGroup = {
   key: string;
   title: string;
-  blurb: string;
-  items: { name: string; usedIn?: string }[];
+  items: { name: string; projects?: string[] }[];
 };
 
 export const skillGroups: SkillGroup[] = [
   {
     key: "programming",
     title: "Programming",
-    blurb: "Typed, tested code across backend, frontend and data work.",
     items: [
-      { name: "Python", usedIn: "Job Apply Agent backend" },
-      { name: "TypeScript", usedIn: "Job Apply Agent frontend" },
-      { name: "JavaScript", usedIn: "Browser extension" },
-      { name: "SQL", usedIn: "Postgres triggers and RLS policies" },
+      { name: "Python", projects: ["job-apply-agent", "multi-pdf-rag-chatbot", "ai-room-service-voice-agent"] },
+      { name: "JavaScript", projects: ["job-apply-agent", "jap-roofing-concept"] },
+      { name: "TypeScript", projects: ["job-apply-agent", "kashzo-solutions-website"] },
+      { name: "SQL", projects: ["job-apply-agent"] },
     ],
   },
   {
     key: "ai",
-    title: "AI & Machine Learning",
-    blurb: "From classic models to LLM-powered features.",
+    title: "Artificial Intelligence",
     items: [
-      { name: "Machine Learning", usedIn: "House price, loan approval" },
+      { name: "Generative AI", projects: ["job-apply-agent"] },
+      { name: "Large Language Models", projects: ["job-apply-agent", "real-time-emotion-analysis"] },
+      { name: "Machine Learning", projects: ["california-house-price-prediction", "loan-approval-prediction", "weather-prediction"] },
       { name: "Deep Learning" },
       { name: "NLP" },
-      { name: "Generative AI", usedIn: "Resume and cover letter drafting" },
-      { name: "LLMs", usedIn: "OpenAI, Gemini" },
-      { name: "Computer Vision", usedIn: "Emotion analysis" },
+      { name: "Computer Vision", projects: ["real-time-emotion-analysis"] },
     ],
   },
   {
     key: "agentic",
     title: "Agentic AI",
-    blurb: "Agents with tools, state and a human in the loop.",
     items: [
-      { name: "LangGraph", usedIn: "Job Apply Agent workflow" },
-      { name: "LangChain", usedIn: "RAG chatbots" },
-      { name: "Tool calling", usedIn: "Voice agent order tools" },
-      { name: "AI agents", usedIn: "Room service voice agent" },
+      { name: "LangChain", projects: ["multi-pdf-rag-chatbot", "pdf-qa-pinecone"] },
+      { name: "LangGraph", projects: ["job-apply-agent", "langgraph-pdf-query-system"] },
+      { name: "Tool Calling", projects: ["ai-room-service-voice-agent"] },
+      { name: "AI Agents", projects: ["job-apply-agent", "ai-room-service-voice-agent"] },
     ],
   },
   {
     key: "rag",
     title: "RAG",
-    blurb: "Grounded answers with citations, not guesses.",
     items: [
-      { name: "Embeddings", usedIn: "OpenAI embeddings" },
-      { name: "Vector databases", usedIn: "ChromaDB, Pinecone, Astra DB" },
-      { name: "FAISS", usedIn: "Multi-PDF chatbot" },
-      { name: "Retrieval pipelines", usedIn: "Multi-PDF chatbot" },
+      { name: "Embeddings", projects: ["multi-pdf-rag-chatbot", "langgraph-pdf-query-system"] },
+      { name: "Vector Databases", projects: ["pdf-qa-pinecone", "langgraph-pdf-query-system"] },
+      { name: "FAISS", projects: ["multi-pdf-rag-chatbot"] },
+      { name: "ChromaDB", projects: ["multi-pdf-rag-chatbot"] },
+      { name: "Retrieval Pipelines", projects: ["multi-pdf-rag-chatbot", "langgraph-pdf-query-system"] },
     ],
   },
   {
     key: "frontend",
     title: "Frontend",
-    blurb: "Product interfaces people can actually use.",
     items: [
-      { name: "React" },
-      { name: "Next.js", usedIn: "This site, Kashzo, Job Apply Agent" },
-      { name: "Tailwind CSS" },
-      { name: "Streamlit", usedIn: "ML and RAG demos" },
+      { name: "React", projects: ["job-apply-agent", "kashzo-solutions-website"] },
+      { name: "Next.js", projects: ["job-apply-agent", "kashzo-solutions-website", "saqinova-website"] },
+      { name: "TypeScript", projects: ["job-apply-agent"] },
+      { name: "Tailwind CSS", projects: ["kashzo-solutions-website", "saqinova-website"] },
     ],
   },
   {
     key: "backend",
     title: "Backend",
-    blurb: "APIs with clear layers and strict validation.",
     items: [
-      { name: "FastAPI", usedIn: "Job Apply Agent, voice agent" },
-      { name: "REST APIs" },
-      { name: "Pydantic" },
-      { name: "Alembic", usedIn: "Job Apply Agent migrations" },
+      { name: "FastAPI", projects: ["job-apply-agent", "ai-room-service-voice-agent", "langgraph-pdf-query-system"] },
+      { name: "REST APIs", projects: ["job-apply-agent"] },
+      { name: "Python", projects: ["job-apply-agent"] },
     ],
   },
   {
     key: "data",
     title: "Databases",
-    blurb: "Relational data with security in the database.",
     items: [
-      { name: "PostgreSQL", usedIn: "Job Apply Agent" },
-      { name: "Supabase", usedIn: "Job Apply Agent, voice agent" },
-      { name: "Astra DB", usedIn: "LangGraph PDF query" },
-      { name: "SQLite", usedIn: "RAG chat history" },
+      { name: "PostgreSQL", projects: ["job-apply-agent"] },
+      { name: "Supabase", projects: ["job-apply-agent", "ai-room-service-voice-agent"] },
+      { name: "Astra DB", projects: ["langgraph-pdf-query-system"] },
     ],
   },
   {
     key: "infra",
     title: "Infrastructure",
-    blurb: "Shipping it, and keeping it running.",
     items: [
-      { name: "Docker", usedIn: "Job Apply Agent image" },
-      { name: "Vercel", usedIn: "Frontends" },
-      { name: "Railway", usedIn: "API and workers" },
-      { name: "GitHub Actions", usedIn: "CI" },
-      { name: "AWS" },
+      { name: "Docker", projects: ["job-apply-agent"] },
+      { name: "AWS", projects: ["ocr-automation-aws-textract"] },
+      { name: "Railway", projects: ["job-apply-agent"] },
+      { name: "Vercel", projects: ["job-apply-agent", "kashzo-solutions-website"] },
     ],
   },
   {
     key: "automation",
     title: "Automation",
-    blurb: "Workflows that remove repetitive work.",
     items: [
-      { name: "n8n", usedIn: "Voice agent order webhook" },
-      { name: "API integrations" },
-      { name: "Workflow automation" },
-      { name: "VAPI", usedIn: "Voice agent" },
+      { name: "n8n", projects: ["ai-room-service-voice-agent"] },
+      { name: "API Integrations", projects: ["ai-room-service-voice-agent"] },
+      { name: "Workflow Automation", projects: ["kashzo-outreach"] },
     ],
   },
   {
     key: "libraries",
-    title: "Libraries",
-    blurb: "The data science toolkit.",
+    title: "Data Science",
     items: [
-      { name: "Pandas" },
+      { name: "Pandas", projects: ["california-house-price-prediction", "loan-approval-prediction"] },
       { name: "NumPy" },
-      { name: "Scikit-learn", usedIn: "ML projects" },
-      { name: "TensorFlow / Keras" },
-      { name: "OpenCV", usedIn: "Emotion analysis" },
+      { name: "Scikit-learn", projects: ["california-house-price-prediction", "loan-approval-prediction", "weather-prediction"] },
+      { name: "TensorFlow/Keras" },
     ],
   },
 ];

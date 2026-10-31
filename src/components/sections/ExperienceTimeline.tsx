@@ -1,58 +1,79 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { Award, Briefcase, Code2, GraduationCap, Rocket } from "lucide-react";
 import { certifications, education, experience } from "@/data/experience";
-import { Animate } from "@/components/ui/Animate";
+import { Animate, type Effect } from "@/components/ui/Animate";
 
-/** Roles and education as one list: when on the left, what on the right. */
+const kindIcon = { Internship: Briefcase, Founder: Rocket, Independent: Code2 } as const;
+const columnEffect: Effect[] = ["fadeInLeft", "fadeInUp", "fadeInRight"];
+
+/** Roles as cards, then education with its certifications. */
 export function ExperienceTimeline({ withEducation = true }: { withEducation?: boolean }) {
   return (
-    <ol className="border-t border-line">
-      {experience.map((e, i) => (
-        <Animate as="li" effect="fadeInLeft" delay={i * 0.15} key={e.organisation} className="grid gap-3 border-b border-line py-8 md:grid-cols-[12rem_1fr] md:gap-10">
-          <div className="text-sm">
-            <p className="font-mono text-xs text-fg-2">{e.period ?? "Ongoing"}</p>
-            <p className="mt-1 text-fg-3">{e.kind}</p>
-          </div>
-          <div>
-            <h3 className="font-display text-2xl font-medium tracking-tight">{e.organisation}</h3>
-            <p className="mt-1 text-fg">{e.role}</p>
-            <p className="mt-3 max-w-2xl leading-relaxed text-fg-2">{e.description}</p>
-            {e.related && (
-              <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-                {e.related.map((r) => (
-                  <li key={r.href}>
-                    <Link href={r.href} className="inline-flex items-center gap-1 text-cyan hover:underline">
-                      {r.label} <ArrowUpRight size={14} />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </Animate>
-      ))}
+    <div className="space-y-6">
+      <ol className="grid gap-5 md:grid-cols-3">
+        {experience.map((e, i) => {
+          const Icon = kindIcon[e.kind];
+          return (
+            <Animate
+              key={e.organisation}
+              as="li"
+              effect={columnEffect[i % 3]}
+              delay={i * 0.15}
+            >
+              <div className="group flex h-full flex-col rounded-2xl border border-line bg-card p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-line-strong hover:shadow-[0_24px_50px_-28px_rgba(56,189,248,0.45)]">
+              <div className="flex items-center justify-between gap-3">
+                <span className="grid size-11 place-items-center rounded-xl bg-blue/15 text-cyan transition-colors duration-300 group-hover:bg-blue group-hover:text-white">
+                  <Icon size={20} strokeWidth={1.8} aria-hidden />
+                </span>
+                <span className="rounded-full border border-line px-3 py-1 font-mono text-[11px] text-fg-2">{e.period ?? "Ongoing"}</span>
+              </div>
+              <h3 className="mt-6 font-display text-2xl font-semibold tracking-tight">{e.organisation}</h3>
+              <p className="mt-1 text-[15px] text-cyan">{e.role}</p>
+              <p className="mt-3 text-[14.5px] leading-relaxed text-fg-2">{e.description}</p>
+              {e.related && (
+                <ul className="mt-auto flex flex-wrap gap-2 pt-5">
+                  {e.related.map((r) => (
+                    <li key={r.href}>
+                      <Link href={r.href} className="inline-block rounded-full bg-bg-2 px-3 py-1.5 text-xs text-fg-2 transition-colors hover:bg-blue hover:text-white">
+                        {r.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              </div>
+            </Animate>
+          );
+        })}
+      </ol>
+
       {withEducation && (
-        <Animate as="li" effect="fadeInLeft" delay={0.45} className="grid gap-3 border-b border-line py-8 md:grid-cols-[12rem_1fr] md:gap-10">
-          <div className="text-sm">
-            <p className="font-mono text-xs text-fg-2">{education.period}</p>
-            <p className="mt-1 text-fg-3">Education</p>
+        <Animate effect="fadeInUp" className="rounded-2xl border border-line bg-card p-6 md:p-8">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div className="flex items-start gap-4">
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-blue/15 text-cyan">
+                <GraduationCap size={20} strokeWidth={1.8} aria-hidden />
+              </span>
+              <div>
+                <h3 className="font-display text-2xl font-semibold tracking-tight">{education.institution}</h3>
+                <p className="mt-1 text-[15px] text-cyan">{education.degree}</p>
+              </div>
+            </div>
+            {education.period && <span className="rounded-full border border-line px-3 py-1 font-mono text-[11px] text-fg-2">{education.period}</span>}
           </div>
-          <div>
-            <h3 className="font-display text-2xl font-medium tracking-tight">{education.institution}</h3>
-            <p className="mt-1 text-fg">{education.degree}</p>
-            <ul className="mt-4 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2">
-              {certifications.map((c) => (
-                <li key={c.title} className="flex items-baseline justify-between gap-4 border-b border-line/60 pb-2">
-                  <span className="text-fg-2">
-                    {c.title} <span className="text-fg-3">· {c.issuer}</span>
-                  </span>
-                  <span className="shrink-0 font-mono text-xs text-fg-3">{c.date}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="Certifications">
+            {certifications.map((c, i) => (
+              <Animate key={c.title} as="li" effect="zoomIn" delay={0.1 * i} className="rounded-xl border border-line bg-bg-2 p-4">
+                <Award size={18} strokeWidth={1.8} className="text-cyan" aria-hidden />
+                <p className="mt-3 text-sm leading-snug font-medium text-fg">{c.title}</p>
+                <p className="mt-1 text-xs text-fg-3">
+                  {c.issuer} · {c.date}
+                </p>
+              </Animate>
+            ))}
+          </ul>
         </Animate>
       )}
-    </ol>
+    </div>
   );
 }

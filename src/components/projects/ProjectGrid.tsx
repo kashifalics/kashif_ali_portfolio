@@ -11,7 +11,16 @@ type Filter = "All" | ProjectCategory;
 /* Columns enter from their own side, as on the reference: left, up, right. */
 const columnEffect: Effect[] = ["fadeInLeft", "fadeInUp", "fadeInRight"];
 
-export function ProjectGrid({ projects, categories }: { projects: Project[]; categories?: ProjectCategory[] }) {
+export function ProjectGrid({
+  projects,
+  categories,
+  headingLevel,
+}: {
+  projects: Project[];
+  categories?: ProjectCategory[];
+  /** 2 when the grid sits directly under the page title. */
+  headingLevel?: 2 | 3;
+}) {
   const [filter, setFilter] = useState<Filter>("All");
   const visible = useMemo(
     () => (filter === "All" ? projects : projects.filter((p) => p.categories.includes(filter))),
@@ -50,7 +59,7 @@ export function ProjectGrid({ projects, categories }: { projects: Project[]; cat
       <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {visible.map((p, i) => (
           <Animate key={`${filter}-${p.slug}`} as="li" effect={columnEffect[i % 3]} delay={(Math.floor(i / 3) % 2) * 0.2}>
-            <ProjectCard project={p} />
+            <ProjectCard project={p} headingLevel={headingLevel} />
           </Animate>
         ))}
       </ul>
