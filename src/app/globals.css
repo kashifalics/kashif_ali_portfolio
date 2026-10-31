@@ -105,6 +105,32 @@
     line-height: 1.75;
   }
 
+  /* Flip card: the front turns over to the right to reveal the back (3D, 0.5s). */
+  .flip-card {
+    perspective: 1200px;
+  }
+  .flip-inner {
+    position: relative;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+  .flip-card:hover .flip-inner,
+  .flip-card:focus-visible .flip-inner,
+  .flip-card[data-flipped="true"] .flip-inner {
+    transform: rotateY(180deg);
+  }
+  .flip-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 10px;
+  }
+  .flip-back {
+    transform: rotateY(180deg);
+  }
+
   .flow-dash {
     stroke-dasharray: 4 6;
     animation: dash 1.6s linear infinite;
@@ -132,5 +158,20 @@
   }
   .flow-dash {
     animation: none;
+  }
+  /* No turning: the back simply fades in over the front. */
+  .flip-inner {
+    transform: none !important;
+    transition: none;
+  }
+  .flip-back {
+    transform: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .flip-card:hover .flip-back,
+  .flip-card:focus-visible .flip-back,
+  .flip-card[data-flipped="true"] .flip-back {
+    opacity: 1;
   }
 }

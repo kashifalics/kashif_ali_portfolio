@@ -52,7 +52,7 @@ export default function HomePage() {
 
       <Section id="process" labelledBy="process-title" className="pt-0 md:pt-4">
         <Container>
-          <SectionHeading id="process-title" title="From Problem to Product." intro="How I work, shown through decisions in the Job Apply Agent rather than as principles on their own." />
+          <SectionHeading id="process-title" title="From Problem to Product." intro="How I work. Hover over or tap a card to see the decision each stage led to in the Job Apply Agent." />
           <div className="mt-10">
             <Philosophy />
           </div>
