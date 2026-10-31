@@ -61,13 +61,12 @@ Left out deliberately: `Facebook-Post-Manager-system` (no README to describe it 
    Spadasoft (AI Engineer Intern, June – August 2026) matches the site.
 5. **Voice agent ownership.** Marked as an internship project because the resume lists it under
    Spadasoft. The client hotel is not named on the site.
-6. **Kashzo client sites.** Your exact role and each site's stack are not recorded anywhere;
-   the card says only that they were delivered through Kashzo Solutions.
+6. **Kashzo client sites.** Role confirmed as Developer (2026-10-31); each site's stack is still
+   not recorded.
 7. **LangGraph PDF Query System.** The brief mentions AWS EC2; nothing in the code shows it, so
    it is not listed.
-8. **Your role on the four Kashzo case studies** (SEO engine, Textract OCR, voice calling agent,
-   learning platform). Kashzo's pages describe the projects, not who built them; the cards say
-   "Built through Kashzo Solutions" only. Add `role` to each entry once confirmed.
+8. **Your role on Kashzo projects.** Resolved 2026-10-31: Developer (the four case studies, the
+   client websites and the JAP concept).
 9. **Spadasoft wording.** The V2 brief says "AI Automation Intern, 1 July – 31 August 2026";
    the site keeps "AI Engineer Intern, June – August 2026", which you confirmed on 2026-10-30
    and which matches your resume.

@@ -8,7 +8,7 @@ placeholder. Generated illustrations have been removed.
 
 | Project | Visual | How it was made |
 |---|---|---|
-| AI Job Apply Agent | Dashboard + two extension screens | Owner's capture of the live app (email removed); extension store screenshots (demo data) |
+| AI Job Apply Agent | Overview, Profile, Jobs, Matches, Applications, Documents + two extension screens | Owner's captures of the live app (browser chrome and email cropped out; originals in `design-reference/`); extension store screenshots (demo data) |
 | Saqinova | Homepage, pricing | From the Kashzo Solutions portfolio |
 | Kashzo Solutions website | Homepage | Captured from www.kashzo.com, 2026-10-31 (cookies rejected) |
 | JAP Roofing concept | Homepage | Captured from jap-roofing-concept.vercel.app, 2026-10-31 |
@@ -39,21 +39,12 @@ or sample documents only.
 
 ### AI Job Apply Agent (https://job-agent-langgraph.vercel.app)
 
-The Overview dashboard is already on the site. Sign in with a test account that holds sample
-data (not your real job search), then capture each page at about 1440 px wide, cropped to the
-app, with the account email in the sidebar covered:
+Overview, Profile, Jobs, Matches, Applications and Documents were supplied on 2026-10-31 and are
+on the case study. One screen is still open:
 
 | Page to open | What should be visible | Save as |
 |---|---|---|
-| Profile → Import | A resume being imported, or its confirmed facts | `public/images/projects/job-apply-agent/resume-import.png` |
-| Profile | Confirmed roles and skills, with evidence | `public/images/projects/job-apply-agent/profile.png` |
-| Jobs | The job list with sources | `public/images/projects/job-apply-agent/jobs.png` |
-| Matches | A match score with the evidence behind it | `public/images/projects/job-apply-agent/matches.png` |
-| Applications | An application waiting for review or approved | `public/images/projects/job-apply-agent/applications.png` |
-| Documents | A tailored resume or cover letter | `public/images/projects/job-apply-agent/documents.png` |
-
-Each one is added to `screenshots` of the `job-apply-agent` entry in `src/data/projects.ts`
-(see "Adding a capture" below) and appears under "In use" on the case study.
+| Profile → Import | A resume being imported, or its extracted facts | `public/images/projects/job-apply-agent/resume-import.png` |
 
 ### Multi-PDF RAG Chatbot (`Desktop/new_rag_chatbot/rag_multi_pdf_chatbot`)
 
