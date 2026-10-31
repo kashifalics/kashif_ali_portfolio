@@ -12,7 +12,7 @@ const icons = [Search, Workflow, Code2, Rocket];
  */
 export function Philosophy() {
   return (
-    <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+    <ol className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
       {philosophy.map((s, i) => {
         const Icon = icons[i];
         const example = s.example.charAt(0).toUpperCase() + s.example.slice(1);

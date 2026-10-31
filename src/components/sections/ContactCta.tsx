@@ -12,7 +12,7 @@ export const contactIntro =
 export function ContactCta() {
   return (
     <Section id="contact" labelledBy="cta-title" className="border-t border-line">
-      <Container className="grid gap-10 lg:grid-cols-[1fr_24rem] lg:items-end lg:gap-16">
+      <Container className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_24rem] lg:items-end lg:gap-16">
         <Animate effect="zoomIn">
           <h2 id="cta-title" className="max-w-3xl text-4xl leading-[1.02] font-semibold tracking-[-0.03em] sm:text-6xl">
             {contactHeading}

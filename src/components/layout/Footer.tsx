@@ -9,10 +9,10 @@ export function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="mt-10 border-t border-line bg-bg-2/60">
-      <Container className="grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
+      <Container className="grid grid-cols-1 gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <p className="font-display text-lg font-semibold">{profile.name}</p>
-          <p className="mt-2 max-w-sm text-sm leading-relaxed text-fg-2">{profile.subtitle}</p>
+          <p className="mt-2 max-w-sm text-sm leading-relaxed text-fg-2">{profile.eyebrow}</p>
           <p className="mt-1 text-sm text-fg-3">{profile.location}</p>
         </div>
         <div>
@@ -57,9 +57,12 @@ export function Footer() {
           </ul>
         </div>
       </Container>
-      <Container className="flex flex-col gap-2 border-t border-line py-6 text-xs text-fg-3 sm:flex-row sm:justify-between">
-        <p>© {year} {profile.name}</p>
-        <p>Built with Next.js, TypeScript and Tailwind CSS.</p>
+      <Container>
+        {/* The rule sits inside the container's padding so it lines up with the columns above. */}
+        <div className="flex flex-col gap-2 border-t border-line py-6 text-xs text-fg-3 sm:flex-row sm:justify-between">
+          <p>© {year} {profile.name}</p>
+          <p>Built with Next.js, TypeScript and Tailwind CSS.</p>
+        </div>
       </Container>
     </footer>
   );

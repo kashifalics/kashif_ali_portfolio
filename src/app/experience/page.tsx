@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOgImage } from "@/lib/site";
 import { Download } from "lucide-react";
 import { profile } from "@/data/profile";
 import { Container, Section, SectionHeading } from "@/components/ui/primitives";
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   description:
     "Experience of Muhammad Kashif Ali: AI Engineer Intern at Spadasoft, founder of Kashzo Solutions Ltd., and independent AI engineering.",
   alternates: { canonical: "/experience" },
-  openGraph: { url: "/experience" },
+  openGraph: { url: "/experience", images: [defaultOgImage] },
 };
 
 export default function ExperiencePage() {
@@ -33,8 +34,9 @@ export default function ExperiencePage() {
         )}
       </PageHeader>
 
-      <Section className="pt-0 md:pt-0">
+      <Section labelledBy="roles-title" className="pt-0 md:pt-0">
         <Container>
+          <h2 id="roles-title" className="sr-only">Roles and education</h2>
           <ExperienceTimeline />
         </Container>
       </Section>

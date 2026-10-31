@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { navItems, cn } from "@/lib/site";
 import { profile } from "@/data/profile";
@@ -33,16 +33,25 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close the mobile menu with Escape.
+  // Close the mobile menu with Escape or a tap outside the header.
+  const headerRef = useRef<HTMLElement>(null);
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpenOn(null);
+    const onPointer = (e: PointerEvent) => {
+      if (!headerRef.current?.contains(e.target as Node)) setOpenOn(null);
+    };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onPointer);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onPointer);
+    };
   }, [open]);
 
   return (
     <header
+      ref={headerRef}
       className={cn(
         "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
         scrolled || open ? "border-line bg-bg/90 backdrop-blur-md" : "border-transparent bg-transparent",
@@ -95,33 +104,30 @@ export function Navigation() {
       </nav>
 
       {open && (
-          <div
-            id="mobile-menu"
-            className="border-t border-line px-2 pb-3 motion-safe:animate-[fade-in_0.2s_ease-out] lg:hidden"
-          >
-            <ul>
-              {navItems.map((item) => {
-                const active = isActive(pathname, item.href);
-                const NavLink = item.href === "/" ? HomeLink : Link;
-                return (
-                  <li key={item.href}>
-                    <NavLink
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      aria-current={active ? "page" : undefined}
-                      className={cn(
-                        "block px-4 py-3 text-base",
-                        active ? "text-fg" : "text-fg-2",
-                      )}
-                    >
-                      {item.label}
-                    </NavLink>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        )}
+        <div
+          id="mobile-menu"
+          className="border-t border-line px-2 pb-3 motion-safe:animate-[fade-in_0.2s_ease-out] lg:hidden"
+        >
+          <ul>
+            {navItems.map((item) => {
+              const active = isActive(pathname, item.href);
+              const NavLink = item.href === "/" ? HomeLink : Link;
+              return (
+                <li key={item.href}>
+                  <NavLink
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className={cn("block px-4 py-3 text-base", active ? "text-fg" : "text-fg-2")}
+                  >
+                    {item.label}
+                  </NavLink>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </header>
   );
 }

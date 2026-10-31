@@ -19,7 +19,7 @@ export function Kashzo() {
   return (
     <Section id="kashzo" labelledBy="kashzo-title" className="bg-bg-2">
       <Container>
-        <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div className="grid grid-cols-1 gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <div>
             <Animate effect="zoomIn">
               <Image src={kashzo.logo.src} alt={kashzo.logo.alt} width={kashzo.logo.width} height={kashzo.logo.height} sizes="200px" className="h-auto w-[180px]" />
@@ -54,7 +54,7 @@ export function Kashzo() {
             </Animate>
           </div>
 
-          <ul className="grid gap-5 sm:grid-cols-2" aria-label="Services">
+          <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2" aria-label="Services">
             {kashzo.services.map((s, i) => {
               const Icon = serviceIcons[i % serviceIcons.length];
               return (
@@ -66,19 +66,19 @@ export function Kashzo() {
                   className={cn(i % 2 === 1 && "sm:translate-y-8")}
                 >
                   <FlipCard
-                    className="h-[190px]"
+                    className="h-[132px] sm:h-[190px]"
                     label={`${s.title}: ${s.body}`}
                     front={
-                      <div className="flex h-full flex-col justify-end p-6">
-                        <Icon size={32} strokeWidth={1.8} className="mb-auto text-cyan" aria-hidden />
+                      <div className="flex h-full flex-col justify-end p-5 sm:p-6">
+                        <Icon size={28} strokeWidth={1.8} className="mb-auto text-cyan sm:size-8" aria-hidden />
                         <h3 className="font-display text-xl font-semibold tracking-tight">{s.title}</h3>
                       </div>
                     }
                     backClassName="px-6"
                     back={
                       <>
-                        <Icon size={28} strokeWidth={1.8} aria-hidden />
-                        <h3 className="mt-3 font-display text-lg font-semibold">{s.title}</h3>
+                        <Icon size={28} strokeWidth={1.8} className="max-sm:hidden" aria-hidden />
+                        <h3 className="font-display text-lg font-semibold sm:mt-3">{s.title}</h3>
                         <p className="mt-2 text-sm leading-relaxed text-white/90">{s.body}</p>
                       </>
                     }
@@ -93,7 +93,7 @@ export function Kashzo() {
           <Animate effect="fadeInLeft">
             <h3 className="font-display text-2xl font-semibold tracking-tight">Work delivered through Kashzo</h3>
           </Animate>
-          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {selected.map((p, i) => (
               <Animate key={p.slug} as="li" effect="fadeInUp" delay={0.1 * i}>
                 <Link

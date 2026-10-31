@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOgImage } from "@/lib/site";
 import { Container, Section, SectionHeading } from "@/components/ui/primitives";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { aboutHeading, bio, EducationCard, Interests, PortraitCard } from "@/components/sections/AboutBlocks";
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   description:
     "Muhammad Kashif Ali: AI-focused software developer, BS Computer Science at Virtual University of Pakistan, and founder of Kashzo Solutions, based in Lahore.",
   alternates: { canonical: "/about" },
-  openGraph: { url: "/about" },
+  openGraph: { url: "/about", images: [defaultOgImage] },
 };
 
 export default function AboutPage() {
@@ -21,7 +22,7 @@ export default function AboutPage() {
       <PageHeader title={aboutHeading} />
 
       <Section className="pt-0 md:pt-0">
-        <Container className="grid items-start gap-12 lg:grid-cols-[22rem_1fr] lg:gap-20">
+        <Container className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[22rem_1fr] lg:gap-20">
           <div className="space-y-8 lg:sticky lg:top-24">
             <PortraitCard className="max-w-[360px]" />
             <EducationCard />

@@ -30,7 +30,7 @@ export function ProjectGrid({
   return (
     <div>
       {categories && (
-        <div role="group" aria-label="Filter projects by area" className="-mx-4 mb-10 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0">
+        <div role="group" aria-label="Filter projects by area" className="-mx-4 mb-10 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:px-0">
           <div className="flex w-max gap-2 sm:w-auto sm:flex-wrap">
             {(["All", ...categories] as Filter[]).map((f) => {
               const on = f === filter;
@@ -56,7 +56,7 @@ export function ProjectGrid({
         </div>
       )}
 
-      <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {visible.map((p, i) => (
           <Animate key={`${filter}-${p.slug}`} as="li" effect={columnEffect[i % 3]} delay={(Math.floor(i / 3) % 2) * 0.2}>
             <ProjectCard project={p} headingLevel={headingLevel} />

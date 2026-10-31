@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOgImage } from "@/lib/site";
 import { Download, Mail, MapPin } from "lucide-react";
 import { profile } from "@/data/profile";
 import { Container, Section } from "@/components/ui/primitives";
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   title: "Contact",
   description: "Get in touch with Muhammad Kashif Ali about AI engineering, software development, automation or a product idea.",
   alternates: { canonical: "/contact" },
-  openGraph: { url: "/contact" },
+  openGraph: { url: "/contact", images: [defaultOgImage] },
 };
 
 export default function ContactPage() {
@@ -25,7 +26,7 @@ export default function ContactPage() {
     <>
       <PageHeader title={contactHeading} intro={contactIntro} />
       <Section className="pt-0 md:pt-0">
-        <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <Container className="grid grid-cols-1 gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <ul className="space-y-3">
               {links.map(({ href, label, value, Icon, external }) => (

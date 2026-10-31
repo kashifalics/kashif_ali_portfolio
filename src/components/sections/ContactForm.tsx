@@ -87,7 +87,7 @@ export function ContactForm() {
         <input ref={honeypot} id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="contact-name" className="text-sm font-medium">Name</label>
           <input

@@ -26,7 +26,7 @@ export function ScreenFrame({
         <span className="size-2 rounded-full bg-fg-3/30" />
         <span className="size-2 rounded-full bg-fg-3/30" />
         <span className="size-2 rounded-full bg-fg-3/30" />
-        {origin && <span className="ml-2 truncate font-mono text-[10.5px] text-fg-3">{origin}</span>}
+        {origin && <span className="ml-2 truncate font-mono text-xs text-fg-3">{origin}</span>}
       </div>
       {children}
     </div>

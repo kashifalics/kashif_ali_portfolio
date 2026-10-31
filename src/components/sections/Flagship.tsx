@@ -19,7 +19,7 @@ export function Flagship({ project }: { project: Project }) {
   return (
     <Section id="flagship" labelledBy="flagship-title">
       <Container>
-        <div className="grid gap-6 border-t border-line pt-8 lg:grid-cols-[1fr_24rem] lg:items-end lg:gap-12">
+        <div className="grid grid-cols-1 gap-6 border-t border-line pt-8 lg:grid-cols-[1fr_24rem] lg:items-end lg:gap-12">
           <Animate effect="fadeInLeft">
             <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-fg-3">
               <span>Flagship · {project.ownership}</span>
@@ -56,7 +56,7 @@ export function Flagship({ project }: { project: Project }) {
           </Link>
         </Animate>
 
-        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {evidence.map(({ figure, label, v, Icon }, i) => (
             <Animate
               key={label}

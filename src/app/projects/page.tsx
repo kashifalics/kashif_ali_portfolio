@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { defaultOgImage } from "@/lib/site";
 import { sortedProjects, usedCategories } from "@/data/projects";
 import { toCard } from "@/lib/assets";
 import { Container, Section } from "@/components/ui/primitives";
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   description:
     "AI agents, RAG systems, automation, machine learning, full-stack products and Kashzo Solutions work by Muhammad Kashif Ali, each marked with its status and ownership.",
   alternates: { canonical: "/projects" },
-  openGraph: { url: "/projects" },
+  openGraph: { url: "/projects", images: [defaultOgImage] },
 };
 
 const legend = [
@@ -33,7 +34,7 @@ export default function ProjectsPage() {
       <Section className="pt-0 md:pt-0">
         <Container>
           <ProjectGrid projects={projects} categories={usedCategories} headingLevel={2} />
-          <dl className="mt-16 grid gap-6 border-t border-line pt-8 text-sm sm:grid-cols-2 lg:grid-cols-5">
+          <dl className="mt-16 grid grid-cols-1 gap-6 border-t border-line pt-8 text-sm sm:grid-cols-2 lg:grid-cols-5">
             {legend.map(([k, v]) => (
               <div key={k}>
                 <dt className="text-fg">{k}</dt>

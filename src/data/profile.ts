@@ -7,7 +7,6 @@ export const profile = {
   shortName: "Kashif Ali",
   initials: "KA",
   title: "AI Engineer & Entrepreneur",
-  subtitle: "AI Engineer | Software Developer | Product Builder",
   eyebrow: "AI Engineer · Entrepreneur · Product Builder",
   location: "Lahore, Pakistan",
   /** Hero headline: the first line in white, the second in cyan over a hand-drawn underline. */

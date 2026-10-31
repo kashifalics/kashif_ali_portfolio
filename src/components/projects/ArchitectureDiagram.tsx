@@ -51,9 +51,9 @@ export function ArchitectureDiagram({
     <div className="card overflow-hidden">
       <div className="flex items-center justify-between border-b border-line px-5 py-3.5">
         <p className="font-mono text-xs text-fg-2">{title}</p>
-        <p className="hidden font-mono text-[11px] text-fg-3 sm:block">Select a component</p>
+        <p className="hidden font-mono text-xs text-fg-3 sm:block">Select a component</p>
       </div>
-      <div className="grid lg:grid-cols-[1.25fr_0.75fr]">
+      <div className="grid grid-cols-1 lg:grid-cols-[1.25fr_0.75fr]">
         <div className="relative px-4 py-6 sm:px-6">
           <ol className="relative space-y-3">
             {lanes.map((lane, li) => (
@@ -77,7 +77,7 @@ export function ArchitectureDiagram({
                         // Pops in after the previous component when the diagram is revealed.
                         style={{ animationDelay: `${0.12 + nodes.indexOf(n) * 0.05}s` }}
                         className={cn(
-                          "pop-item flex min-h-[64px] items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition-all duration-200",
+                          "pop-item flex min-h-[64px] items-center gap-3 rounded-xl border px-3 max-[400px]:px-2.5 py-2.5 text-left transition-all duration-200",
                           isSel
                             ? "border-cyan bg-cyan/10 shadow-[0_0_0_4px_rgba(56,189,248,0.08)]"
                             : isNb
@@ -87,15 +87,15 @@ export function ArchitectureDiagram({
                       >
                         <span
                           className={cn(
-                            "grid size-8 shrink-0 place-items-center rounded-lg border",
+                            "grid size-8 shrink-0 place-items-center rounded-lg border max-[400px]:hidden",
                             isSel ? "border-cyan/50 text-cyan" : "border-line text-fg-2",
                           )}
                         >
                           <Icon size={15} />
                         </span>
                         <span className="min-w-0">
-                          <span className="block text-[13px] leading-tight font-semibold text-fg sm:text-sm">{n.label}</span>
-                          {n.tech && <span className="mt-0.5 block truncate font-mono text-[10px] text-fg-3 sm:text-[11px]">{n.tech}</span>}
+                          <span className="block text-[13px] leading-tight font-semibold break-words text-fg sm:text-sm">{n.label}</span>
+                          {n.tech && <span className="mt-0.5 block truncate font-mono text-xs text-fg-3">{n.tech}</span>}
                         </span>
                       </button>
                     );
@@ -121,7 +121,7 @@ export function ArchitectureDiagram({
                           <button
                             type="button"
                             onClick={() => setSelected(c.id)}
-                            className="rounded-md border border-line-strong px-2 py-1 font-mono text-[11px] text-cyan hover:bg-cyan/10"
+                            className="rounded-md border border-line-strong px-2 py-1 font-mono text-xs text-cyan hover:bg-cyan/10"
                           >
                             {c.label}
                           </button>

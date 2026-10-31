@@ -73,7 +73,7 @@ export default function HomePage() {
       <Section id="about" labelledBy="about-title" className="pt-0 md:pt-4">
         <Container>
           <SectionHeading id="about-title" title={aboutHeading} />
-          <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_24rem] lg:gap-16">
+          <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_24rem] lg:gap-16">
             <div className="prose-body max-w-2xl space-y-4">
               {bio.slice(0, 4).map((p) => (
                 <p key={p}>{p}</p>

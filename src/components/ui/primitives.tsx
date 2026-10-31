@@ -59,7 +59,7 @@ export function SectionHeading({
     );
   }
   return (
-    <div className={cn("grid gap-5 border-t border-line pt-8 md:grid-cols-[1fr_minmax(0,24rem)] md:items-end md:gap-12", className)}>
+    <div className={cn("grid grid-cols-1 gap-5 border-t border-line pt-8 md:grid-cols-[1fr_minmax(0,24rem)] md:items-end md:gap-12", className)}>
       <Animate effect="fadeInLeft">
         <h2 id={id} className="max-w-3xl text-4xl leading-[1.02] font-semibold text-fg sm:text-5xl lg:text-[3.5rem]">
           {title}

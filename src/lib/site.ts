@@ -1,3 +1,5 @@
+import { profile } from "@/data/profile";
+
 /**
  * The site's public URL. Set NEXT_PUBLIC_SITE_URL once a custom domain is
  * connected; on Vercel it otherwise falls back to the production domain.
@@ -11,6 +13,23 @@ function resolveSiteUrl() {
 }
 
 export const siteUrl = resolveSiteUrl().replace(/\/+$/, "");
+
+/**
+ * The generated share card (app/opengraph-image.tsx). A page that sets its own
+ * openGraph replaces the layout's, image included, so pages pass this back in.
+ */
+export const defaultOgImage = {
+  url: "/opengraph-image",
+  width: 1200,
+  height: 630,
+  alt: `${profile.name} — ${profile.title}`,
+};
+
+/** Shortens text to a search-snippet length, ending on a whole word. */
+export function clip(text: string, max = 160) {
+  if (text.length <= max) return text;
+  return `${text.slice(0, max - 1).replace(/\s+\S*$/, "").replace(/[,;:.]$/, "")}…`;
+}
 
 export const navItems = [
   { label: "Home", href: "/" },

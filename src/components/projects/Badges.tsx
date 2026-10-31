@@ -14,7 +14,7 @@ export function StatusBadge({ status, className }: { status: ProjectStatus; clas
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[11px]",
+        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-xs",
         statusTone[status],
         className,
       )}
@@ -46,7 +46,7 @@ export function StatusText({ status }: { status: ProjectStatus }) {
 
 export function OwnershipBadge({ ownership }: { ownership: Ownership }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-line bg-bg-2/80 px-2.5 py-1 text-[11px] text-fg-2">
+    <span className="inline-flex items-center rounded-full border border-line bg-bg-2/80 px-2.5 py-1 text-xs text-fg-2">
       {ownership}
     </span>
   );
@@ -62,7 +62,7 @@ const featureTone: Record<FeatureState, { label: string; className: string }> = 
 export function FeatureStateBadge({ state }: { state: FeatureState }) {
   const t = featureTone[state];
   return (
-    <span className={cn("inline-flex shrink-0 rounded-full border px-2 py-0.5 font-mono text-[10px]", t.className)}>
+    <span className={cn("inline-flex shrink-0 rounded-full border px-2 py-0.5 font-mono text-xs", t.className)}>
       {t.label}
     </span>
   );

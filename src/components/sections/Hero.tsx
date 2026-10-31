@@ -23,7 +23,7 @@ export function Hero() {
         <div className="absolute -top-40 right-[-10%] h-[620px] w-[620px] rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.10),transparent_65%)]" />
       </div>
       <Container>
-        <div className="grid items-center gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:gap-6">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:gap-6">
           <div className="relative">
             <p
               style={at(0)}
@@ -89,7 +89,7 @@ export function Hero() {
           </div>
         </div>
 
-        <dl style={at(0.65)} className="hero-rise mt-16 grid border-y border-line sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
+        <dl style={at(0.65)} className="hero-rise mt-16 grid grid-cols-1 border-y border-line sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
           {facts.map((f) => (
             <div
               key={f.term}

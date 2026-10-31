@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ExternalLink, Lock } from "lucide-react";
 import { getProject, sortedProjects } from "@/data/projects";
 import { toCard, withAvailableAssets } from "@/lib/assets";
+import { clip, defaultOgImage } from "@/lib/site";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { Container } from "@/components/ui/primitives";
 import { GitHubIcon } from "@/components/ui/icons";
@@ -28,16 +29,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProject(slug);
   if (!project) return {};
   const cover = withAvailableAssets(project).cover;
+  const description = clip(project.summary);
   return {
     title: project.name,
-    description: project.summary,
+    description,
     alternates: { canonical: `/projects/${project.slug}` },
     openGraph: {
       type: "article",
       url: `/projects/${project.slug}`,
       title: project.name,
-      description: project.summary,
-      ...(cover && !cover.src.includes("logo") ? { images: [{ url: cover.src, width: cover.width, height: cover.height, alt: cover.alt }] } : {}),
+      description,
+      images: [
+        cover && !cover.src.includes("logo")
+          ? { url: cover.src, width: cover.width, height: cover.height, alt: cover.alt }
+          : defaultOgImage,
+      ],
     },
   };
 }
@@ -46,7 +52,7 @@ function Block({ title, children }: { title: string; children: React.ReactNode }
   return (
     <div>
       <section className="border-t border-line py-12 md:py-16">
-        <div className="grid gap-6 lg:grid-cols-[260px_1fr] lg:gap-12">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-[260px_1fr] lg:gap-12">
           <h2 className="text-xl font-semibold text-fg lg:text-2xl">{title}</h2>
           <div className="min-w-0">{children}</div>
         </div>
@@ -134,7 +140,7 @@ export default async function ProjectPage({ params }: Props) {
           </figure>
         </div>
 
-        <dl className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {facts.map((f) => (
             <div key={f.k} className="bg-bg-2 p-5">
               <dt className="text-xs text-fg-3">{f.k}</dt>
@@ -152,7 +158,7 @@ export default async function ProjectPage({ params }: Props) {
 
           {(project.problem || project.objective || project.solution) && (
             <Block title="Problem and solution">
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                 {[
                   ["The problem", project.problem],
                   ["The objective", project.objective],
@@ -184,13 +190,13 @@ export default async function ProjectPage({ params }: Props) {
 
           <Block title="Technology stack">
             {project.stackGroups ? (
-              <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <dl className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {project.stackGroups.map((g) => (
                   <div key={g.label} className="card p-5">
                     <dt className="label">{g.label}</dt>
                     <dd className="mt-3 flex flex-wrap gap-1.5">
                       {g.items.map((i) => (
-                        <span key={i} className="rounded-md border border-line bg-bg-2/70 px-2 py-1 font-mono text-[11px] text-fg-2">
+                        <span key={i} className="rounded-md border border-line bg-bg-2/70 px-2 py-1 font-mono text-xs text-fg-2">
                           {i}
                         </span>
                       ))}
@@ -230,7 +236,7 @@ export default async function ProjectPage({ params }: Props) {
           {features.length > 0 && (
             <Block title="Main functionality">
               <p className="mb-6 text-sm text-fg-3">Each feature is marked with how far it has really got, checked against the source code.</p>
-              <ul className="grid gap-3 md:grid-cols-2">
+              <ul className="grid grid-cols-1 gap-3 md:grid-cols-2">
                 {features.map((f) => (
                   <li key={f.title} className="card p-5">
                     <div className="flex items-start justify-between gap-3">
@@ -246,7 +252,7 @@ export default async function ProjectPage({ params }: Props) {
 
           {project.workflow && (
             <Block title={project.featured ? "User journey" : "How it works"}>
-              <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <ol className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {project.workflow.map((w, i) => (
                   <li key={w.title} className="card relative p-5">
                     <span className="font-mono text-xs text-cyan">{String(i + 1).padStart(2, "0")}</span>
@@ -266,7 +272,7 @@ export default async function ProjectPage({ params }: Props) {
                 ))}
               </div>
               {s.bullets && (
-                <ul className="mt-5 grid gap-2 sm:grid-cols-2">
+                <ul className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2">
                   {s.bullets.map((b) => (
                     <li key={b} className="rounded-xl border border-line bg-bg-2/60 px-4 py-3 text-sm text-fg-2">
                       {b}
@@ -292,7 +298,7 @@ export default async function ProjectPage({ params }: Props) {
 
           {project.screenshots && project.screenshots.length > 0 && (
             <Block title="In use">
-              <div className="grid gap-6 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {project.screenshots.map((s) => (
                   <figure key={s.src}>
                     <ScreenFrame origin={s.origin}>
@@ -311,7 +317,7 @@ export default async function ProjectPage({ params }: Props) {
             <h2 id="related-title" className="text-xl font-semibold lg:text-2xl">
               Related projects
             </h2>
-            <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((r) => (
                 <li key={r.slug}>
                   <ProjectCard project={r} />
@@ -321,7 +327,7 @@ export default async function ProjectPage({ params }: Props) {
           </section>
         )}
 
-        <nav aria-label="More projects" className="mt-6 grid gap-4 border-t border-line pt-10 sm:grid-cols-2">
+        <nav aria-label="More projects" className="mt-6 grid grid-cols-1 gap-4 border-t border-line pt-10 sm:grid-cols-2">
           {prev ? (
             <Link href={`/projects/${prev.slug}`} className="card group p-5 transition-colors hover:border-line-strong">
               <span className="inline-flex items-center gap-1.5 text-xs text-fg-3">

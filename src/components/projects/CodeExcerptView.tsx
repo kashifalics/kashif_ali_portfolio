@@ -32,9 +32,9 @@ function Line({ text }: { text: string }) {
 export function CodeExcerptView({ excerpt, compact }: { excerpt: CodeExcerpt; compact?: boolean }) {
   const lines = excerpt.code.split("\n");
   return (
-    <div className={cn("flex flex-col overflow-hidden bg-[#0a1220] font-mono", compact ? "size-full text-[11px]" : "rounded-xl border border-line text-[12.5px] sm:text-[13px]")}>
+    <div className={cn("flex flex-col overflow-hidden bg-[#0a1220] font-mono", compact ? "size-full text-xs" : "rounded-xl border border-line text-[12.5px] sm:text-[13px]")}>
       <div className="flex shrink-0 items-center border-b border-line bg-elevated/60">
-        <span className="border-r border-line border-b-2 border-b-cyan px-3 py-1.5 text-[11px] text-fg">{excerpt.file}</span>
+        <span className="border-r border-line border-b-2 border-b-cyan px-3 py-1.5 text-xs text-fg">{excerpt.file}</span>
       </div>
       <div className={cn("relative min-h-0 flex-1 overflow-hidden", !compact && "overflow-x-auto")}>
         <pre className={cn("leading-relaxed", compact ? "p-3" : "p-4")}>
@@ -51,7 +51,7 @@ export function CodeExcerptView({ excerpt, compact }: { excerpt: CodeExcerpt; co
       </div>
       {excerpt.output && (
         <div className={cn("shrink-0 border-t border-line bg-bg/60", compact ? "px-3 py-2" : "px-4 py-3")}>
-          <p className="text-[10px] text-fg-3">Output</p>
+          <p className="text-xs text-fg-3">Output</p>
           <pre className="mt-1 whitespace-pre-wrap text-emerald-300/90">{excerpt.output}</pre>
         </div>
       )}

@@ -25,7 +25,7 @@ const projectName = new Map(sortedProjects.map((p) => [p.slug, p.name]));
  */
 export function SkillsDashboard() {
   return (
-    <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {skillGroups.map((g, i) => {
         const Icon = icons[g.key] ?? Braces;
         return (
@@ -34,6 +34,8 @@ export function SkillsDashboard() {
             as="li"
             effect="fadeInUp"
             delay={(i % 3) * 0.15}
+            // A lone card on the last row of three spans it, so the grid doesn't end in a gap.
+            className={i === skillGroups.length - 1 && skillGroups.length % 3 === 1 ? "lg:col-span-3" : undefined}
           >
             <div className="group h-full rounded-2xl border border-line bg-card p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-line-strong">
             <div className="flex items-center gap-3">

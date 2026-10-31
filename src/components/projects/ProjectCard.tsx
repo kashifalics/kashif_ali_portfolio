@@ -24,10 +24,10 @@ export function ProjectCard({ project, headingLevel = 3 }: { project: Project; h
             {project.name}
           </Link>
         </Heading>
-        <p className="mt-1.5 line-clamp-2 text-sm leading-snug text-fg-2">{project.tagline}</p>
+        <p className="mt-1.5 line-clamp-2 min-h-[2lh] text-sm leading-snug text-fg-2">{project.tagline}</p>
         <ul className="mt-4 mb-4 flex flex-wrap gap-1.5" aria-label="Main technologies">
           {project.stack.slice(0, 3).map((s) => (
-            <li key={s} className="rounded-full bg-bg-2 px-2.5 py-1 font-mono text-[11px] text-fg-2">
+            <li key={s} className="rounded-full bg-bg-2 px-2.5 py-1 font-mono text-xs text-fg-2">
               {s}
             </li>
           ))}

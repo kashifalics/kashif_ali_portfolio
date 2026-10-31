@@ -54,11 +54,8 @@ export const metadata: Metadata = {
     description,
     locale: "en_US",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: `${profile.name} — ${profile.title}`,
-    description,
-  },
+  // Title, description and image come from each page's openGraph.
+  twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
 };
 
