@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { sortedProjects } from "@/data/projects";
-import { withAvailableAssets } from "@/lib/assets";
+import { toCard, withAvailableAssets } from "@/lib/assets";
 import { ButtonLink, Container, Section, SectionHeading } from "@/components/ui/primitives";
 import { Hero } from "@/components/sections/Hero";
 import { Flagship } from "@/components/sections/Flagship";
@@ -31,7 +31,7 @@ export default function HomePage() {
             intro="Agents, retrieval systems, automation, machine learning, and the products of my own company."
           />
           <div className="mt-10">
-            <ProjectGrid projects={rest.slice(0, 6)} />
+            <ProjectGrid projects={rest.slice(0, 6).map(toCard)} />
           </div>
           <div className="mt-10 flex justify-center">
             <ButtonLink href="/projects" variant="secondary">

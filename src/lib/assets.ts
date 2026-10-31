@@ -20,3 +20,9 @@ export function withAvailableAssets(project: Project): Project {
     screenshots: project.screenshots?.filter((s) => publicFileExists(s.src)),
   };
 }
+
+/** Only what a project card draws, so the full case study is not sent to the browser. */
+export function toCard(project: Project): Project {
+  const { slug, name, tagline, summary, categories, status, ownership, order, stack, cover, diagram, code } = withAvailableAssets(project);
+  return { slug, name, tagline, summary, categories, status, ownership, order, stack, cover, diagram, code };
+}

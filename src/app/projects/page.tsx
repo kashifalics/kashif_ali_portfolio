@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { sortedProjects, usedCategories } from "@/data/projects";
-import { withAvailableAssets } from "@/lib/assets";
+import { toCard } from "@/lib/assets";
 import { Container, Section } from "@/components/ui/primitives";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
@@ -23,7 +23,7 @@ const legend = [
 ] as const;
 
 export default function ProjectsPage() {
-  const projects = sortedProjects.map(withAvailableAssets);
+  const projects = sortedProjects.map(toCard);
   return (
     <>
       <PageHeader
