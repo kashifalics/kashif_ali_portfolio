@@ -74,8 +74,10 @@ export function ArchitectureDiagram({
                         type="button"
                         onClick={() => setSelected(n.id)}
                         aria-pressed={isSel}
+                        // Pops in after the previous component when the diagram is revealed.
+                        style={{ animationDelay: `${0.12 + nodes.indexOf(n) * 0.05}s` }}
                         className={cn(
-                          "flex min-h-[64px] items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition-all duration-200",
+                          "pop-item flex min-h-[64px] items-center gap-3 rounded-xl border px-3 py-2.5 text-left transition-all duration-200",
                           isSel
                             ? "border-cyan bg-cyan/10 shadow-[0_0_0_4px_rgba(56,189,248,0.08)]"
                             : isNb

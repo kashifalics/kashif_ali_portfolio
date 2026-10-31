@@ -91,7 +91,7 @@ export function Flagship({ project }: { project: Project }) {
         </ul>
 
         {project.architecture && project.architectureFlow && (
-          <Animate effect="fadeInUp" className="mt-16">
+          <Animate effect="popIn" className="mt-16">
             <h3 className="text-2xl font-semibold">How it fits together</h3>
             <p className="mt-2 max-w-2xl text-fg-2">
               From the person to a downloadable document, with the browser extension alongside. Select any part to see what it does.

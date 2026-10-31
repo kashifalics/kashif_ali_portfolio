@@ -4,12 +4,12 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/site";
 
 /**
- * Entrance animations, played once as the element scrolls into view, with the
- * reference site's values (1.25s, full-width slides, a 30% zoom). Pure CSS
+ * Entrance animations, played once as the element scrolls into view, styled
+ * after the reference site but quicker (0.7s, shorter slides). Pure CSS
  * (.anim-* in globals.css) driven by one IntersectionObserver per element;
  * with reduced motion the CSS shows everything at rest.
  */
-export type Effect = "fadeIn" | "fadeInLeft" | "fadeInRight" | "fadeInUp" | "zoomIn";
+export type Effect = "fadeIn" | "fadeInLeft" | "fadeInRight" | "fadeInUp" | "zoomIn" | "popIn";
 
 export function Animate({
   effect = "fadeIn",
@@ -38,7 +38,8 @@ export function Animate({
           io.disconnect();
         }
       },
-      { rootMargin: "0px 0px -60px 0px" },
+      // Start as soon as the element reaches the screen, so nothing waits for more scrolling.
+      { rootMargin: "0px 0px 40px 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
@@ -55,7 +56,8 @@ export function Animate({
     >
       <div
         className={cn("anim h-full", `anim-${effect}`, shown && "anim-in")}
-        style={delay ? { transitionDelay: `${delay}s` } : undefined}
+        // Delays are halved from the values callers pass, keeping their order but moving faster.
+        style={delay ? { transitionDelay: `${delay / 2}s` } : undefined}
       >
         {children}
       </div>
