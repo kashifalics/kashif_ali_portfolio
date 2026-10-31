@@ -25,6 +25,25 @@ export function StatusBadge({ status, className }: { status: ProjectStatus; clas
   );
 }
 
+const statusDot: Record<ProjectStatus, string> = {
+  Live: "bg-emerald-400",
+  Completed: "bg-cyan",
+  "In Progress": "bg-amber-300",
+  Prototype: "bg-sky-300/70",
+  Academic: "bg-indigo-300",
+  Concept: "bg-slate-400",
+};
+
+/** Status as plain text with a coloured dot, for lists. */
+export function StatusText({ status }: { status: ProjectStatus }) {
+  return (
+    <span className="inline-flex items-center gap-2 font-mono text-xs whitespace-nowrap text-fg-2">
+      <span className={cn("size-1.5 rounded-full", statusDot[status])} aria-hidden />
+      {status}
+    </span>
+  );
+}
+
 export function OwnershipBadge({ ownership }: { ownership: Ownership }) {
   return (
     <span className="inline-flex items-center rounded-full border border-line bg-bg-2/80 px-2.5 py-1 text-[11px] text-fg-2">

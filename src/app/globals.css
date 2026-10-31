@@ -16,7 +16,7 @@
   --cyan-2: #22d3ee;
   --blue: #2563eb;
 
-  --line: rgba(148, 178, 214, 0.12);
+  --line: rgba(148, 178, 214, 0.11);
   --line-strong: rgba(56, 189, 248, 0.32);
 
   color-scheme: dark;
@@ -85,26 +85,18 @@
 }
 
 @layer components {
-  /* Faint engineering grid behind the whole site, fading out downward. */
-  .site-grid {
-    background-image:
-      linear-gradient(to right, rgba(148, 178, 214, 0.045) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(148, 178, 214, 0.045) 1px, transparent 1px);
-    background-size: 88px 88px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
-  }
-
+  /* Flat surfaces: one border, one radius, no gradient wash. */
   .card {
-    background: linear-gradient(180deg, rgba(21, 34, 56, 0.55), rgba(16, 27, 45, 0.55));
+    background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 18px;
+    border-radius: 12px;
   }
 
+  /* Small section and field names: quiet sans, not a monospace eyebrow. */
   .label {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.02em;
-    color: var(--cyan);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--fg-3);
   }
 
   .prose-body {
@@ -113,32 +105,9 @@
     line-height: 1.75;
   }
 
-  .marquee-track {
-    animation: marquee 48s linear infinite;
-  }
-
-  .orbit {
-    animation: spin 60s linear infinite;
-  }
-
   .flow-dash {
     stroke-dasharray: 4 6;
     animation: dash 1.6s linear infinite;
-  }
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
   }
 }
 
@@ -148,12 +117,19 @@
   }
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .marquee-track,
-  .orbit,
   .flow-dash {
     animation: none;
   }

@@ -6,7 +6,6 @@ import { ArrowLeft, ArrowRight, ExternalLink, Lock } from "lucide-react";
 import { getProject, sortedProjects } from "@/data/projects";
 import { withAvailableAssets } from "@/lib/assets";
 import { Container } from "@/components/ui/primitives";
-import { Reveal } from "@/components/ui/Reveal";
 import { GitHubIcon } from "@/components/ui/icons";
 import { ProjectMedia } from "@/components/projects/ProjectMedia";
 import { ScreenFrame } from "@/components/projects/ScreenFrame";
@@ -44,14 +43,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <Reveal>
+    <div>
       <section className="border-t border-line py-12 md:py-16">
         <div className="grid gap-6 lg:grid-cols-[260px_1fr] lg:gap-12">
           <h2 className="text-xl font-semibold text-fg lg:text-2xl">{title}</h2>
           <div className="min-w-0">{children}</div>
         </div>
       </section>
-    </Reveal>
+    </div>
   );
 }
 
@@ -120,14 +119,14 @@ export default async function ProjectPage({ params }: Props) {
       </header>
 
       <Container>
-        <Reveal className="mt-12">
+        <div className="mt-12">
           <figure className={project.cover && project.cover.width / project.cover.height < 1.2 ? "mx-auto max-w-xl" : undefined}>
             <div className="shadow-[0_40px_120px_-50px_rgba(56,189,248,0.4)]">
               <ProjectMedia project={project} priority natural sizes="(min-width: 1200px) 1150px, 100vw" />
             </div>
             {project.cover?.caption && <figcaption className="mt-3 text-sm text-fg-3">{project.cover.caption}</figcaption>}
           </figure>
-        </Reveal>
+        </div>
 
         <dl className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {facts.map((f) => (

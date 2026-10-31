@@ -24,36 +24,46 @@ export function Section({
   );
 }
 
+/**
+ * A section opens with its title on the left and, on wide screens, one short
+ * line of context on the right, sitting on a single rule.
+ */
 export function SectionHeading({
   id,
-  label,
   title,
   intro,
   className,
   align = "left",
 }: {
   id?: string;
-  label?: string;
   title: ReactNode;
   intro?: ReactNode;
   className?: string;
   align?: "left" | "center";
 }) {
+  if (align === "center") {
+    return (
+      <div className={cn("mx-auto max-w-2xl text-center", className)}>
+        <h2 id={id} className="text-4xl leading-[1.05] font-semibold text-fg sm:text-5xl">
+          {title}
+        </h2>
+        {intro && <p className="prose-body mt-5">{intro}</p>}
+      </div>
+    );
+  }
   return (
-    <div className={cn("max-w-2xl", align === "center" && "mx-auto text-center", className)}>
-      {label && <p className="label mb-4">{label}</p>}
-      <h2 id={id} className="text-3xl leading-[1.1] font-semibold text-fg sm:text-4xl lg:text-[2.75rem]">
+    <div className={cn("grid gap-5 border-t border-line pt-8 md:grid-cols-[1fr_minmax(0,24rem)] md:items-end md:gap-12", className)}>
+      <h2 id={id} className="max-w-3xl text-4xl leading-[1.02] font-semibold text-fg sm:text-5xl lg:text-[3.5rem]">
         {title}
       </h2>
-      {intro && <p className="prose-body mt-5">{intro}</p>}
+      {intro && <p className="text-[15px] leading-relaxed text-fg-2 md:pb-2">{intro}</p>}
     </div>
   );
 }
 
 const buttonStyles = {
-  primary:
-    "bg-blue text-white hover:bg-[#1d4ed8] shadow-[0_8px_30px_-10px_rgba(37,99,235,0.7)]",
-  secondary: "border border-line-strong bg-card/60 text-fg hover:border-cyan hover:text-cyan",
+  primary: "bg-blue text-white hover:bg-[#1d4ed8]",
+  secondary: "border border-line-strong text-fg hover:border-cyan hover:text-cyan",
   ghost: "text-fg-2 hover:text-cyan",
 } as const;
 
@@ -68,25 +78,12 @@ export function ButtonLink({ variant = "primary", className, children, ...props 
     <Link
       {...props}
       className={cn(
-        "group inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-colors duration-200",
+        "group inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-semibold transition-colors duration-200",
         buttonStyles[variant],
         className,
       )}
     >
       {children}
     </Link>
-  );
-}
-
-export function Tag({ children, className }: { children: ReactNode; className?: string }) {
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center rounded-md border border-line bg-bg-2/70 px-2 py-1 font-mono text-[11px] text-fg-2",
-        className,
-      )}
-    >
-      {children}
-    </span>
   );
 }

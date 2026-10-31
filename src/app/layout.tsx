@@ -83,11 +83,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <div aria-hidden className="site-grid pointer-events-none fixed inset-0 -z-10" />
-        <div
-          aria-hidden
-          className="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[620px] bg-[radial-gradient(ellipse_60%_50%_at_70%_0%,rgba(56,189,248,0.10),transparent_70%)]"
-        />
         <PersonJsonLd />
         <Navigation />
         <main id="main">{children}</main>

@@ -2,81 +2,73 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import type { Project } from "@/types";
 import { Container, Section, ButtonLink } from "@/components/ui/primitives";
-import { Reveal } from "@/components/ui/Reveal";
 import { ProjectMedia } from "@/components/projects/ProjectMedia";
 import { ArchitectureDiagram } from "@/components/projects/ArchitectureDiagram";
-import { StatusBadge, OwnershipBadge } from "@/components/projects/Badges";
+import { StatusText } from "@/components/projects/Badges";
+
+/* Counted from the private repository on 2026-10-30; update when they change. */
+const evidence = [
+  { k: "622 backend tests", v: "run in CI against a real Postgres on every push" },
+  { k: "21 recorded decisions", v: "each with its reasoning, in the architecture document" },
+  { k: "78 commits in 13 days", v: "from foundation to a live product, 14–26 October 2026" },
+  { k: "Never submits for you", v: "approval is enforced by a database trigger, not a prompt" },
+];
 
 export function Flagship({ project }: { project: Project }) {
-  const implemented = project.features?.filter((f) => f.state === "implemented").length ?? 0;
   return (
-    <Section id="flagship" labelledBy="flagship-title" className="pt-16 md:pt-24">
+    <Section id="flagship" labelledBy="flagship-title">
       <Container>
-        <Reveal>
-          <div className="flex flex-wrap items-center gap-2">
-            <p className="label mr-2">Flagship project</p>
-            <StatusBadge status={project.status} />
-            <OwnershipBadge ownership={project.ownership} />
+        <div className="grid gap-6 border-t border-line pt-8 lg:grid-cols-[1fr_24rem] lg:items-end lg:gap-12">
+          <div>
+            <p className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-fg-3">
+              <span>Flagship · {project.ownership}</span>
+              <StatusText status={project.status} />
+            </p>
+            <h2 id="flagship-title" className="mt-4 text-5xl leading-[0.98] font-semibold tracking-[-0.03em] sm:text-6xl lg:text-7xl">
+              {project.name}
+            </h2>
           </div>
-          <div className="mt-5 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
-            <div className="max-w-3xl">
-              <h2 id="flagship-title" className="text-4xl leading-[1.05] font-semibold sm:text-5xl lg:text-6xl">
-                {project.name}
-              </h2>
-              <p className="mt-3 font-mono text-sm text-fg-3">AI Agents | Full-Stack Development</p>
-              <p className="prose-body mt-5 max-w-2xl">{project.summary}</p>
-            </div>
-            <div className="flex flex-wrap gap-3">
+          <div>
+            <p className="text-[15px] leading-relaxed text-fg-2">{project.summary}</p>
+            <div className="mt-5 flex flex-wrap gap-3">
               <ButtonLink href={`/projects/${project.slug}`}>
-                View Case Study <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+                Read the case study <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
               </ButtonLink>
               {project.liveUrl && (
                 <a
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-line-strong px-5 py-3 text-sm font-semibold text-fg transition-colors hover:border-cyan hover:text-cyan"
+                  className="inline-flex items-center gap-2 rounded-lg border border-line-strong px-5 py-3 text-sm font-semibold text-fg transition-colors hover:border-cyan hover:text-cyan"
                 >
                   Open the live app <ExternalLink size={15} />
                 </a>
               )}
             </div>
           </div>
-        </Reveal>
-
-        <Reveal delay={0.1}>
-          <Link
-            href={`/projects/${project.slug}`}
-            aria-label={`${project.name} case study`}
-            className="group relative mt-12 block rounded-xl shadow-[0_40px_120px_-50px_rgba(56,189,248,0.45)] transition-transform duration-500 hover:-translate-y-1"
-          >
-            <ProjectMedia project={project} priority natural sizes="(min-width: 1200px) 1150px, 100vw" />
-          </Link>
-        </Reveal>
-
-        <div className="mt-6 grid gap-4 sm:grid-cols-3">
-          {[
-            { k: `${implemented} features`, v: "implemented and checked against the code" },
-            { k: "Human approval", v: "enforced by a database trigger, not a prompt" },
-            { k: "Evidence-cited", v: "every generated claim traces to a confirmed fact" },
-          ].map((s, i) => (
-            <Reveal key={s.k} delay={0.05 * i} className="card p-5">
-              <p className="font-display text-lg font-semibold text-fg">{s.k}</p>
-              <p className="mt-1 text-sm text-fg-2">{s.v}</p>
-            </Reveal>
-          ))}
         </div>
 
-        <ul className="mt-6 flex flex-wrap gap-2" aria-label="Technology stack">
-          {project.stack.map((s) => (
-            <li key={s} className="rounded-md border border-line bg-bg-2/70 px-2.5 py-1 font-mono text-xs text-fg-2">
-              {s}
-            </li>
+        <Link href={`/projects/${project.slug}`} aria-label={`${project.name} case study`} className="group mt-12 block">
+          <ProjectMedia project={project} priority natural sizes="(min-width: 1200px) 1150px, 100vw" />
+        </Link>
+
+        <dl className="mt-10 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+          {evidence.map((e) => (
+            <div key={e.k} className="border-t border-line pt-4">
+              <dt className="font-display text-lg font-medium text-fg">{e.k}</dt>
+              <dd className="mt-1 text-sm leading-relaxed text-fg-2">{e.v}</dd>
+            </div>
           ))}
-        </ul>
+        </dl>
+
+        <p className="mt-8 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-fg-3">
+          {project.stack.map((s) => (
+            <span key={s}>{s}</span>
+          ))}
+        </p>
 
         {project.architecture && project.architectureFlow && (
-          <Reveal className="mt-14">
+          <div className="mt-16">
             <h3 className="text-2xl font-semibold">How it fits together</h3>
             <p className="mt-2 max-w-2xl text-fg-2">
               From the person to a downloadable document, with the browser extension alongside. Select any part to see what it does.
@@ -84,7 +76,7 @@ export function Flagship({ project }: { project: Project }) {
             <div className="mt-6">
               <ArchitectureDiagram nodes={project.architecture} flow={project.architectureFlow} title="job-apply-agent / architecture" />
             </div>
-          </Reveal>
+          </div>
         )}
       </Container>
     </Section>

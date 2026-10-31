@@ -23,7 +23,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHeader label="Contact" title={contactHeading} intro={contactIntro} />
+      <PageHeader title={contactHeading} intro={contactIntro} />
       <Section className="pt-0 md:pt-0">
         <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>

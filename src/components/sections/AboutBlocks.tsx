@@ -1,5 +1,4 @@
-import { GraduationCap, MapPin } from "lucide-react";
-import { certifications, education } from "@/data/experience";
+import { education } from "@/data/experience";
 import { interests, profile } from "@/data/profile";
 import { ProfilePhoto } from "./ProfilePhoto";
 
@@ -16,31 +15,13 @@ export const bio = [
 
 export function EducationCard() {
   return (
-    <div className="card p-6">
-      <GraduationCap className="text-cyan" size={22} aria-hidden />
-      <p className="label mt-5">Education</p>
-      <h3 className="mt-2 text-xl font-semibold">{education.degree}</h3>
-      <p className="mt-1 text-fg-2">{education.institution}</p>
-      <p className="mt-3 inline-flex items-center gap-1.5 text-sm text-fg-3">
-        <MapPin size={14} /> {education.location}
-        {education.period && <span className="ml-2 font-mono">{education.period}</span>}
+    <div className="border-t border-line pt-5">
+      <p className="label">Education</p>
+      <p className="mt-2 font-display text-xl font-medium">{education.degree}</p>
+      <p className="mt-1 text-fg-2">
+        {education.institution}, {education.location}
       </p>
-      {certifications.length > 0 && (
-        <div className="mt-6 border-t border-line pt-5">
-          <p className="text-xs text-fg-3">Certifications</p>
-          <ul className="mt-3 space-y-3">
-            {certifications.map((c) => (
-              <li key={c.title} className="flex items-baseline justify-between gap-4 text-sm">
-                <span>
-                  <span className="block text-fg">{c.title}</span>
-                  <span className="block text-fg-3">{c.issuer}</span>
-                </span>
-                <span className="shrink-0 font-mono text-xs text-fg-3">{c.date}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {education.period && <p className="mt-1 font-mono text-xs text-fg-3">{education.period}</p>}
     </div>
   );
 }
@@ -48,12 +29,10 @@ export function EducationCard() {
 export function PortraitCard({ className }: { className?: string }) {
   return (
     <figure className={className}>
-      <div className="relative overflow-hidden rounded-[22px] border border-line-strong bg-bg-2 p-2">
-        <ProfilePhoto sizes="(min-width: 1024px) 420px, 90vw" className="aspect-[4/5] rounded-[16px] bg-white" />
-      </div>
-      <figcaption className="mt-3 flex items-center justify-between text-sm text-fg-3">
-        <span>{profile.name}</span>
-        <span className="font-mono text-xs">{profile.location}</span>
+      <ProfilePhoto sizes="(min-width: 1024px) 400px, 90vw" className="aspect-[4/5] rounded-md bg-white" />
+      <figcaption className="mt-3 flex items-baseline justify-between text-[13px]">
+        <span className="text-fg">{profile.name}</span>
+        <span className="text-fg-3">{profile.location}</span>
       </figcaption>
     </figure>
   );
@@ -61,11 +40,11 @@ export function PortraitCard({ className }: { className?: string }) {
 
 export function Interests() {
   return (
-    <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      {interests.map((it) => (
-        <li key={it.title} className="rounded-xl border border-line bg-bg-2/70 p-5 transition-colors hover:border-line-strong">
-          <p className="font-medium text-fg">{it.title}</p>
-          <p className="mt-1 text-sm text-fg-3">{it.note}</p>
+    <ul className="flex flex-wrap gap-x-2 gap-y-2 text-[15px] text-fg-2">
+      {interests.map((it, i) => (
+        <li key={it}>
+          {it}
+          {i < interests.length - 1 && <span className="ml-2 text-fg-3">/</span>}
         </li>
       ))}
     </ul>

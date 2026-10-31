@@ -3,13 +3,13 @@ import { sortedProjects, usedCategories } from "@/data/projects";
 import { withAvailableAssets } from "@/lib/assets";
 import { Container, Section } from "@/components/ui/primitives";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { ProjectGrid } from "@/components/projects/ProjectGrid";
+import { WorkIndex } from "@/components/projects/WorkIndex";
 import { ContactCta } from "@/components/sections/ContactCta";
 
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "AI agents, RAG systems, automation, machine learning, full-stack products and Kashzo Solutions work by Muhammad Kashif Ali, each labelled with its status and ownership.",
+    "AI agents, RAG systems, automation, machine learning, full-stack products and Kashzo Solutions work by Muhammad Kashif Ali, each marked with its status and ownership.",
   alternates: { canonical: "/projects" },
   openGraph: { url: "/projects" },
 };
@@ -27,17 +27,16 @@ export default function ProjectsPage() {
   return (
     <>
       <PageHeader
-        label="Projects"
-        title="Everything I've built, labelled honestly"
-        intro="Independent engineering, Kashzo Solutions work, internship and demo projects. Filter by area, then open any project for the full case study."
+        title="Projects"
+        intro="Independent engineering, Kashzo Solutions work, internship and demo projects. Every visual is a real capture, a flow read from the code, or the code itself."
       />
       <Section className="pt-0 md:pt-0">
         <Container>
-          <ProjectGrid projects={projects} categories={usedCategories} />
-          <dl className="mt-16 grid gap-4 border-t border-line pt-8 text-sm sm:grid-cols-2 lg:grid-cols-5">
+          <WorkIndex projects={projects} categories={usedCategories} />
+          <dl className="mt-16 grid gap-6 border-t border-line pt-8 text-sm sm:grid-cols-2 lg:grid-cols-5">
             {legend.map(([k, v]) => (
               <div key={k}>
-                <dt className="font-mono text-xs text-cyan">{k}</dt>
+                <dt className="text-fg">{k}</dt>
                 <dd className="mt-1 text-fg-3">{v}</dd>
               </div>
             ))}

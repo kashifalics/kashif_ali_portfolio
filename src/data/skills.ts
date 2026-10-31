@@ -28,7 +28,7 @@ export const skillGroups: SkillGroup[] = [
     items: [
       { name: "Machine Learning", usedIn: "House price, loan approval" },
       { name: "Deep Learning" },
-      { name: "NLP", usedIn: "Sentiment analyzer" },
+      { name: "NLP" },
       { name: "Generative AI", usedIn: "Resume and cover letter drafting" },
       { name: "LLMs", usedIn: "OpenAI, Gemini" },
       { name: "Computer Vision", usedIn: "Emotion analysis" },
@@ -124,26 +124,4 @@ export const skillGroups: SkillGroup[] = [
       { name: "OpenCV", usedIn: "Emotion analysis" },
     ],
   },
-];
-
-/** Shown in the scrolling strip under the hero. */
-export const marqueeSkills = [
-  "Python",
-  "LangGraph",
-  "LangChain",
-  "OpenAI",
-  "RAG",
-  "FastAPI",
-  "Next.js",
-  "TypeScript",
-  "PostgreSQL",
-  "Supabase",
-  "Docker",
-  "n8n",
-  "Vercel",
-  "Railway",
-  "Scikit-learn",
-  "Pinecone",
-  "ChromaDB",
-  "Streamlit",
 ];

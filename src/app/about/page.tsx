@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { dimensions } from "@/data/profile";
 import { Container, Section, SectionHeading } from "@/components/ui/primitives";
-import { Reveal } from "@/components/ui/Reveal";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { aboutHeading, bio, EducationCard, Interests, PortraitCard } from "@/components/sections/AboutBlocks";
 import { Philosophy } from "@/components/sections/Philosophy";
@@ -20,52 +18,44 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <PageHeader label="About" title={aboutHeading} />
+      <PageHeader title={aboutHeading} />
 
       <Section className="pt-0 md:pt-0">
-        <Container className="grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-          <div className="space-y-6 lg:sticky lg:top-28">
-            <PortraitCard className="mx-auto max-w-[400px]" />
+        <Container className="grid items-start gap-12 lg:grid-cols-[22rem_1fr] lg:gap-20">
+          <div className="space-y-8 lg:sticky lg:top-24">
+            <PortraitCard className="max-w-[360px]" />
             <EducationCard />
           </div>
-          <div>
+          <div className="max-w-2xl">
             <div className="prose-body space-y-5 text-lg">
               {bio.map((p) => (
                 <p key={p}>{p}</p>
               ))}
             </div>
-
-            <h2 className="mt-14 text-2xl font-semibold">How I think about my work</h2>
-            <ul className="mt-6 space-y-4">
-              {dimensions.map((d) => (
-                <li key={d.key} className="card p-6">
-                  <h3 className="text-lg font-semibold">{d.title}</h3>
-                  <p className="mt-2 text-fg-2">{d.body}</p>
-                  <p className="mt-3 text-sm text-fg-3">{d.proof}</p>
-                </li>
-              ))}
-            </ul>
-
-            <h2 className="mt-14 mb-6 text-2xl font-semibold">Beyond technology</h2>
-            <Interests />
+            <div className="mt-12 border-t border-line pt-5">
+              <p className="label">Outside of code</p>
+              <div className="mt-3">
+                <Interests />
+              </div>
+            </div>
           </div>
         </Container>
       </Section>
 
-      <Section labelledBy="skills-title" className="border-t border-line bg-bg-2/40">
+      <Section labelledBy="process-title" className="pt-0 md:pt-4">
         <Container>
-          <SectionHeading id="skills-title" label="Technical skills" title="The toolkit, with receipts" />
-          <Reveal className="mt-10">
-            <SkillsDashboard />
-          </Reveal>
+          <SectionHeading id="process-title" title="From Problem to Product." intro="How I work, shown through decisions in the Job Apply Agent." />
+          <div className="mt-10">
+            <Philosophy />
+          </div>
         </Container>
       </Section>
 
-      <Section labelledBy="process-title" className="border-t border-line">
+      <Section labelledBy="skills-title" className="pt-0 md:pt-4">
         <Container>
-          <SectionHeading id="process-title" label="Engineering philosophy" title="From Problem to Product." align="center" />
-          <div className="mt-14">
-            <Philosophy />
+          <SectionHeading id="skills-title" title="Technical skills" />
+          <div className="mt-10">
+            <SkillsDashboard />
           </div>
         </Container>
       </Section>

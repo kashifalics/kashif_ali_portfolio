@@ -45,64 +45,45 @@ export const profile = {
   },
 } as const;
 
-export const focusAreas = [
-  "AI Engineering",
-  "Agentic AI",
-  "Full-Stack Development",
-  "AI Automation",
-  "Product Development",
-] as const;
+/** The row under the hero: where things stand, each item checkable. */
+export const facts: { term: string; value: string; href?: string }[] = [
+  { term: "Building", value: "Job Apply Agent, live in production", href: "/projects/ai-job-apply-agent" },
+  { term: "Running", value: "Kashzo Solutions Ltd., as founder", href: "/#kashzo" },
+  { term: "Most recently", value: "AI Engineer Intern, Spadasoft (Jun–Aug 2026)", href: "/experience" },
+  { term: "Studying", value: "BS Computer Science, Virtual University (2023–2027)" },
+];
 
-export const dimensions = [
-  {
-    key: "engineer",
-    title: "Engineer",
-    body: "I develop software applications, AI systems, intelligent agents, and technical solutions.",
-    proof: "Multi-tenant FastAPI backend, LangGraph workflows, RAG pipelines.",
-  },
-  {
-    key: "builder",
-    title: "Product builder",
-    body: "I turn technical ideas into usable products with real workflows, architecture, and interfaces.",
-    proof: "Job Apply Agent: live web app, browser extension and a human-approval workflow.",
-  },
-  {
-    key: "entrepreneur",
-    title: "Entrepreneur",
-    body: "I build digital businesses and explore opportunities at the intersection of technology and business.",
-    proof: "Founder of Kashzo Solutions Ltd., delivering websites and AI automation.",
-  },
-] as const;
-
+/** Personal interests, as the owner listed them. */
 export const interests = [
-  { title: "Forex & quantitative trading", note: "Process, risk and discipline over prediction." },
-  { title: "Financial markets", note: "How capital moves, and why." },
-  { title: "Entrepreneurship", note: "Building things people pay for." },
-  { title: "Technology research", note: "Reading papers and trying new tools early." },
-  { title: "History & historical places", note: "The long view of how societies work." },
-  { title: "Travel", note: "New places, new perspectives." },
-  { title: "Continuous learning", note: "Courses, certifications and side projects." },
+  "Forex and quantitative trading",
+  "Financial markets",
+  "Entrepreneurship",
+  "Technology research",
+  "History and historical places",
+  "Travel",
+  "Continuous learning",
 ] as const;
 
+/** The owner's four stages, each shown through a real decision in the Job Apply Agent. */
 export const philosophy = [
   {
     step: "Understand",
     body: "Understand the actual problem and user requirements.",
-    detail: "Who uses it, what they do today, what must never go wrong.",
+    example: "job boards that forbid scraping are never read automatically; people paste the job or its company link instead.",
   },
   {
     step: "Architect",
     body: "Design the architecture, data flow, APIs, and integrations.",
-    detail: "Decide what is deterministic code and what is an LLM's job.",
+    example: "LLMs only read and write language; scoring, grounding checks and application status are plain, testable code.",
   },
   {
     step: "Engineer",
     body: "Develop robust, maintainable, and functional solutions.",
-    detail: "Typed boundaries, tests around the rules, migrations that roll back.",
+    example: "a Postgres trigger refuses any application that skips approval, tested with direct SQL as the API role.",
   },
   {
     step: "Deliver",
     body: "Test, deploy, measure, and continuously improve.",
-    detail: "CI, health checks, handover notes, then iterate on real use.",
+    example: "CI on every push, deploys gated on a /ready health check, and a written handover with rollback steps.",
   },
 ] as const;
