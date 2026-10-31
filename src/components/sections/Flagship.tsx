@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink, FlaskConical, GitCommitHorizontal, NotebookPen, ShieldCheck } from "lucide-react";
 import type { Project } from "@/types";
 import { Container, Section, ButtonLink } from "@/components/ui/primitives";
 import { ProjectMedia } from "@/components/projects/ProjectMedia";
@@ -9,10 +9,10 @@ import { Animate } from "@/components/ui/Animate";
 
 /* Counted from the private repository on 2026-10-30; update when they change. */
 const evidence = [
-  { k: "622 backend tests", v: "run in CI against a real Postgres on every push" },
-  { k: "21 recorded decisions", v: "each with its reasoning, in the architecture document" },
-  { k: "78 commits in 13 days", v: "from foundation to a live product, 14–26 October 2026" },
-  { k: "Never submits for you", v: "approval is enforced by a database trigger, not a prompt" },
+  { figure: "622", label: "backend tests", v: "Run in CI against a real Postgres on every push.", Icon: FlaskConical },
+  { figure: "21", label: "recorded decisions", v: "Each with its reasoning, in the architecture document.", Icon: NotebookPen },
+  { figure: "78", label: "commits in 13 days", v: "From foundation to a live product, 14–26 October 2026.", Icon: GitCommitHorizontal },
+  { figure: "0", label: "auto-submissions", v: "Approval is enforced by a database trigger, not a prompt.", Icon: ShieldCheck },
 ];
 
 export function Flagship({ project }: { project: Project }) {
@@ -55,20 +55,35 @@ export function Flagship({ project }: { project: Project }) {
           </Link>
         </Animate>
 
-        <dl className="mt-10 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
-          {evidence.map((e, i) => (
-            <Animate key={e.k} effect="fadeInUp" delay={0.5 + i * 0.1} className="border-t border-line pt-4">
-              <dt className="font-display text-lg font-medium text-fg">{e.k}</dt>
-              <dd className="mt-1 text-sm leading-relaxed text-fg-2">{e.v}</dd>
+        <dl className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {evidence.map(({ figure, label, v, Icon }, i) => (
+            <Animate
+              key={label}
+              effect="fadeInUp"
+              delay={0.5 + i * 0.1}
+              className="group rounded-2xl border border-line bg-card p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-line-strong hover:shadow-[0_24px_50px_-28px_rgba(56,189,248,0.45)]"
+            >
+              <span className="grid size-11 place-items-center rounded-xl bg-blue/15 text-cyan transition-colors duration-300 group-hover:bg-blue group-hover:text-white">
+                <Icon size={20} strokeWidth={1.8} aria-hidden />
+              </span>
+              <dt className="mt-6 flex items-baseline gap-2">
+                <span className="font-display text-4xl font-semibold tracking-tight text-fg">{figure}</span>
+                <span className="text-[15px] font-medium text-fg">{label}</span>
+              </dt>
+              <dd className="mt-2 text-sm leading-relaxed text-fg-2">{v}</dd>
             </Animate>
           ))}
         </dl>
 
-        <p className="mt-8 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-fg-3">
-          {project.stack.map((s) => (
-            <span key={s}>{s}</span>
+        <ul className="mt-8 flex flex-wrap gap-2" aria-label="Technology stack">
+          {project.stack.map((s, i) => (
+            <Animate key={s} as="li" effect="zoomIn" delay={0.05 * i}>
+              <span className="inline-block rounded-full border border-line bg-bg-2 px-3.5 py-1.5 font-mono text-xs text-fg-2 transition-colors hover:border-cyan hover:text-cyan">
+                {s}
+              </span>
+            </Animate>
           ))}
-        </p>
+        </ul>
 
         {project.architecture && project.architectureFlow && (
           <Animate effect="fadeInUp" className="mt-16">
