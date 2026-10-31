@@ -77,5 +77,5 @@ export const kashzo = {
     { label: "Facebook", href: "https://www.facebook.com/Kashzosolutions/" },
     { label: "X", href: "https://x.com/KashzoSolutions" },
   ],
-  projectSlugs: ["saqinova-website", "kashzo-solutions-website", "jap-roofing-concept", "kashzo-client-websites", "kashzo-outreach"],
+  projectSlugs: ["saqinova-website", "kashzo-solutions-website", "kashzo-client-websites", "kashzo-outreach", "jap-roofing-concept"],
 } as const;
