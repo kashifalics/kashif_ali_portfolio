@@ -1,11 +1,12 @@
 import { skillGroups } from "@/data/skills";
+import { Animate } from "@/components/ui/Animate";
 
 /** Skills grouped by area; each names where it was used, if anywhere on this site. */
 export function SkillsDashboard() {
   return (
     <dl className="grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-      {skillGroups.map((g) => (
-        <div key={g.key}>
+      {skillGroups.map((g, i) => (
+        <Animate key={g.key} effect="fadeInUp" delay={(i % 3) * 0.15}>
           <dt className="border-b border-line pb-3 font-display text-lg font-medium text-fg">{g.title}</dt>
           <dd>
             <ul className="mt-3 space-y-2.5">
@@ -17,7 +18,7 @@ export function SkillsDashboard() {
               ))}
             </ul>
           </dd>
-        </div>
+        </Animate>
       ))}
     </dl>
   );

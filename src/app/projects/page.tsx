@@ -3,7 +3,7 @@ import { sortedProjects, usedCategories } from "@/data/projects";
 import { withAvailableAssets } from "@/lib/assets";
 import { Container, Section } from "@/components/ui/primitives";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { WorkIndex } from "@/components/projects/WorkIndex";
+import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { ContactCta } from "@/components/sections/ContactCta";
 
 export const metadata: Metadata = {
@@ -28,11 +28,11 @@ export default function ProjectsPage() {
     <>
       <PageHeader
         title="Projects"
-        intro="Independent engineering, Kashzo Solutions work, internship and demo projects. Every visual is a real capture, a flow read from the code, or the code itself."
+        intro="Independent engineering, Kashzo Solutions work, internship and demo projects."
       />
       <Section className="pt-0 md:pt-0">
         <Container>
-          <WorkIndex projects={projects} categories={usedCategories} />
+          <ProjectGrid projects={projects} categories={usedCategories} />
           <dl className="mt-16 grid gap-6 border-t border-line pt-8 text-sm sm:grid-cols-2 lg:grid-cols-5">
             {legend.map(([k, v]) => (
               <div key={k}>

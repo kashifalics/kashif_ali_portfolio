@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/site";
+import { Animate } from "./Animate";
 
 export function Container({ className, children }: { className?: string; children: ReactNode }) {
   return <div className={cn("mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8", className)}>{children}</div>;
@@ -44,19 +45,31 @@ export function SectionHeading({
   if (align === "center") {
     return (
       <div className={cn("mx-auto max-w-2xl text-center", className)}>
-        <h2 id={id} className="text-4xl leading-[1.05] font-semibold text-fg sm:text-5xl">
-          {title}
-        </h2>
-        {intro && <p className="prose-body mt-5">{intro}</p>}
+        <Animate effect="zoomIn">
+          <h2 id={id} className="text-4xl leading-[1.05] font-semibold text-fg sm:text-5xl">
+            {title}
+          </h2>
+        </Animate>
+        {intro && (
+          <Animate delay={0.3}>
+            <p className="prose-body mt-5">{intro}</p>
+          </Animate>
+        )}
       </div>
     );
   }
   return (
     <div className={cn("grid gap-5 border-t border-line pt-8 md:grid-cols-[1fr_minmax(0,24rem)] md:items-end md:gap-12", className)}>
-      <h2 id={id} className="max-w-3xl text-4xl leading-[1.02] font-semibold text-fg sm:text-5xl lg:text-[3.5rem]">
-        {title}
-      </h2>
-      {intro && <p className="text-[15px] leading-relaxed text-fg-2 md:pb-2">{intro}</p>}
+      <Animate effect="fadeInLeft">
+        <h2 id={id} className="max-w-3xl text-4xl leading-[1.02] font-semibold text-fg sm:text-5xl lg:text-[3.5rem]">
+          {title}
+        </h2>
+      </Animate>
+      {intro && (
+        <Animate delay={0.3}>
+          <p className="text-[15px] leading-relaxed text-fg-2 md:pb-2">{intro}</p>
+        </Animate>
+      )}
     </div>
   );
 }

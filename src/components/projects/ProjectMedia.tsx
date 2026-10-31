@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ImageOff } from "lucide-react";
 import type { Project } from "@/types";
 import { cn } from "@/lib/site";
 import { ScreenFrame } from "./ScreenFrame";
@@ -8,8 +7,8 @@ import { CodeExcerptView } from "./CodeExcerptView";
 
 /**
  * The project's main visual, always genuine: a real capture in a ScreenFrame,
- * else a flow read from its code, else a verbatim code excerpt, else a neutral
- * placeholder. `natural` keeps a capture at its own proportions (case studies);
+ * else a flow read from its code, else a verbatim code excerpt, else a quiet
+ * panel with the project's initials. `natural` keeps a capture at its own proportions (case studies);
  * without it the visual fills the box it is given (cards).
  */
 export function ProjectMedia({
@@ -72,16 +71,17 @@ export function ProjectMedia({
     );
   }
 
+  const initials = project.name
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("");
   return (
     <div
-      role="img"
-      aria-label={`Screenshot of ${project.name} to be added`}
-      className={cn("grid h-full min-h-48 place-items-center rounded-xl border border-dashed border-line-strong/50 bg-bg-2/60", className)}
+      aria-hidden
+      className={cn("grid h-full min-h-48 place-items-center rounded-xl border border-line bg-bg-2", className)}
     >
-      <span className="flex flex-col items-center gap-2 text-fg-3">
-        <ImageOff size={20} aria-hidden />
-        <span className="text-xs">Screenshot to be added</span>
-      </span>
+      <span className="font-display text-4xl font-semibold text-fg-3/60">{initials}</span>
     </div>
   );
 }

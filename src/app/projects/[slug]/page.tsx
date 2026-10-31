@@ -285,7 +285,7 @@ export default async function ProjectPage({ params }: Props) {
           )}
 
           {project.screenshots && project.screenshots.length > 0 && (
-            <Block title="Screenshots">
+            <Block title="In use">
               <div className="grid gap-6 md:grid-cols-2">
                 {project.screenshots.map((s) => (
                   <figure key={s.src}>

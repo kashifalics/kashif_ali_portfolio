@@ -51,6 +51,10 @@
     scroll-padding-top: 96px;
   }
 
+  main {
+    overflow-x: clip;
+  }
+
   body {
     background: var(--bg);
     color: var(--fg);
@@ -131,6 +135,10 @@
     transform: rotateY(180deg);
   }
 
+  .draw-loop {
+    animation: draw-loop 5s ease infinite;
+  }
+
   .flow-dash {
     stroke-dasharray: 4 6;
     animation: dash 1.6s linear infinite;
@@ -140,6 +148,28 @@
 @keyframes dash {
   to {
     stroke-dashoffset: -20;
+  }
+}
+
+/* Hero underline, as on the reference: draws in over the first 0.6s, holds,
+   fades near the end of each 5s cycle, then draws again. */
+@keyframes draw-loop {
+  0% {
+    opacity: 1;
+    stroke-dasharray: 0, 1500;
+  }
+  12% {
+    stroke-dasharray: 1500, 1500;
+  }
+  80% {
+    opacity: 1;
+  }
+  97% {
+    opacity: 0;
+    stroke-dasharray: 1500, 1500;
+  }
+  100% {
+    stroke-dasharray: 0, 1500;
   }
 }
 
@@ -156,7 +186,8 @@
   html {
     scroll-behavior: auto;
   }
-  .flow-dash {
+  .flow-dash,
+  .draw-loop {
     animation: none;
   }
   /* No turning: the back simply fades in over the front. */

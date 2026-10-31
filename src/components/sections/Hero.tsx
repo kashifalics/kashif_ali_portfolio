@@ -48,8 +48,8 @@ export function Hero() {
                   </motion.span>
                   {i === 1 && (
                     <svg viewBox="0 0 400 40" className="absolute top-[88%] left-[-1%] h-auto w-[102%]" aria-hidden>
-                      <path d="M 4 16 C 110 5, 270 4, 396 13" fill="none" stroke="#2563eb" strokeWidth="8" strokeLinecap="round" />
-                      <path d="M 44 32 C 150 23, 280 22, 356 28" fill="none" stroke="#2563eb" strokeWidth="6" strokeLinecap="round" />
+                      <path className="draw-loop" d="M 4 16 C 110 5, 270 4, 396 13" fill="none" stroke="#2563eb" strokeWidth="8" strokeLinecap="round" />
+                      <path className="draw-loop" d="M 44 32 C 150 23, 280 22, 356 28" fill="none" stroke="#2563eb" strokeWidth="6" strokeLinecap="round" />
                     </svg>
                   )}
                 </span>

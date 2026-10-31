@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { certifications, education, experience } from "@/data/experience";
+import { Animate } from "@/components/ui/Animate";
 
 /** Roles and education as one list: when on the left, what on the right. */
 export function ExperienceTimeline({ withEducation = true }: { withEducation?: boolean }) {
   return (
     <ol className="border-t border-line">
-      {experience.map((e) => (
-        <li key={e.organisation} className="grid gap-3 border-b border-line py-8 md:grid-cols-[12rem_1fr] md:gap-10">
+      {experience.map((e, i) => (
+        <Animate as="li" effect="fadeInLeft" delay={i * 0.15} key={e.organisation} className="grid gap-3 border-b border-line py-8 md:grid-cols-[12rem_1fr] md:gap-10">
           <div className="text-sm">
             <p className="font-mono text-xs text-fg-2">{e.period ?? "Ongoing"}</p>
             <p className="mt-1 text-fg-3">{e.kind}</p>
@@ -28,10 +29,10 @@ export function ExperienceTimeline({ withEducation = true }: { withEducation?: b
               </ul>
             )}
           </div>
-        </li>
+        </Animate>
       ))}
       {withEducation && (
-        <li className="grid gap-3 border-b border-line py-8 md:grid-cols-[12rem_1fr] md:gap-10">
+        <Animate as="li" effect="fadeInLeft" delay={0.45} className="grid gap-3 border-b border-line py-8 md:grid-cols-[12rem_1fr] md:gap-10">
           <div className="text-sm">
             <p className="font-mono text-xs text-fg-2">{education.period}</p>
             <p className="mt-1 text-fg-3">Education</p>
@@ -50,7 +51,7 @@ export function ExperienceTimeline({ withEducation = true }: { withEducation?: b
               ))}
             </ul>
           </div>
-        </li>
+        </Animate>
       )}
     </ol>
   );

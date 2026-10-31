@@ -2,10 +2,10 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { sortedProjects } from "@/data/projects";
 import { withAvailableAssets } from "@/lib/assets";
-import { Container, Section, SectionHeading } from "@/components/ui/primitives";
+import { ButtonLink, Container, Section, SectionHeading } from "@/components/ui/primitives";
 import { Hero } from "@/components/sections/Hero";
 import { Flagship } from "@/components/sections/Flagship";
-import { WorkIndex } from "@/components/projects/WorkIndex";
+import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { ExperienceTimeline } from "@/components/sections/ExperienceTimeline";
 import { SkillsDashboard } from "@/components/sections/SkillsDashboard";
 import { Kashzo } from "@/components/sections/Kashzo";
@@ -28,14 +28,16 @@ export default function HomePage() {
           <SectionHeading
             id="work-title"
             title="Work"
-            intro="Agents, retrieval systems, automation, machine learning, and the products of my own company. Each is marked with how far it really got."
+            intro="Agents, retrieval systems, automation, machine learning, and the products of my own company."
           />
           <div className="mt-10">
-            <WorkIndex projects={rest} />
+            <ProjectGrid projects={rest.slice(0, 6)} />
           </div>
-          <Link href="/projects" className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold text-fg hover:text-cyan">
-            Filter by area on the projects page <ArrowRight size={15} />
-          </Link>
+          <div className="mt-10 flex justify-center">
+            <ButtonLink href="/projects" variant="secondary">
+              View all {all.length} projects <ArrowRight size={15} />
+            </ButtonLink>
+          </div>
         </Container>
       </Section>
 

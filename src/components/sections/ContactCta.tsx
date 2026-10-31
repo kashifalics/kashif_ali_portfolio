@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { profile } from "@/data/profile";
 import { Container, Section } from "@/components/ui/primitives";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/icons";
+import { Animate } from "@/components/ui/Animate";
 
 export const contactHeading = "Let's Build Something Meaningful.";
 export const contactIntro =
@@ -12,7 +13,7 @@ export function ContactCta() {
   return (
     <Section labelledBy="cta-title" className="border-t border-line">
       <Container className="grid gap-10 lg:grid-cols-[1fr_24rem] lg:items-end lg:gap-16">
-        <div>
+        <Animate effect="zoomIn">
           <h2 id="cta-title" className="max-w-3xl text-4xl leading-[1.02] font-semibold tracking-[-0.03em] sm:text-6xl">
             {contactHeading}
           </h2>
@@ -24,8 +25,8 @@ export function ContactCta() {
               {profile.email}
             </a>
           )}
-        </div>
-        <div>
+        </Animate>
+        <Animate effect="fadeInRight" delay={0.3}>
           <p className="text-[15px] leading-relaxed text-fg-2">{contactIntro}</p>
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
             <Link href="/contact" className="group inline-flex items-center gap-1.5 font-semibold text-fg hover:text-cyan">
@@ -42,7 +43,7 @@ export function ContactCta() {
               </a>
             )}
           </div>
-        </div>
+        </Animate>
       </Container>
     </Section>
   );
