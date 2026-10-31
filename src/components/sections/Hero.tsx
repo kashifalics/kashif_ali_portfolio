@@ -6,7 +6,7 @@ import { ArrowRight, Download } from "lucide-react";
 import { facts, profile } from "@/data/profile";
 import { Container, ButtonLink } from "@/components/ui/primitives";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/icons";
-import { ProfilePhoto } from "./ProfilePhoto";
+import { HeroPortrait } from "./HeroPortrait";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -25,67 +25,78 @@ export function Hero() {
   return (
     <section aria-labelledby="hero-title" className="pt-28 md:pt-36">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-[1fr_340px] lg:items-end lg:gap-16">
-          <div>
-            <motion.p {...rise(0)} className="text-sm text-fg-2">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:gap-6">
+          <div className="relative">
+            <motion.p
+              {...rise(0)}
+              className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-card px-4 py-2 text-[13px] text-fg-2"
+            >
+              <span className="size-1.5 rounded-full bg-cyan" aria-hidden />
               {profile.eyebrow}
-              <span className="text-fg-3"> — {profile.location}</span>
             </motion.p>
 
-            <h1 id="hero-title" className="mt-6 text-[2.75rem] leading-[0.98] font-semibold tracking-[-0.035em] text-fg sm:text-[4rem] lg:text-[4.5rem] xl:text-[4.875rem]">
-              {profile.headline.map((line, i) => (
-                <span key={line} className="block overflow-hidden pb-[0.06em]">
+            <h1 id="hero-title" className="mt-8 text-[2.75rem] leading-[1.02] font-bold tracking-[-0.035em] text-fg sm:text-[4rem] lg:text-[4rem] xl:text-[4.5rem]">
+              {[profile.headline.before, profile.headline.highlight, profile.headline.after].map((line, i) => (
+                <span key={line} className={`block pb-[0.08em] ${i === 1 ? "relative mb-[0.32em] w-fit" : "overflow-hidden"}`}>
                   <motion.span
-                    className="block"
-                    initial={reduce ? false : { y: "105%" }}
-                    animate={{ y: 0 }}
+                    className={i === 1 ? "relative z-10 block text-cyan" : "block"}
+                    initial={reduce ? false : { y: i === 1 ? 24 : "105%", opacity: i === 1 ? 0 : 1 }}
+                    animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.9, delay: 0.1 + i * 0.12, ease }}
                   >
                     {line}
                   </motion.span>
+                  {i === 1 && (
+                    <svg viewBox="0 0 400 40" className="absolute top-[88%] left-[-1%] h-auto w-[102%]" aria-hidden>
+                      <path d="M 4 16 C 110 5, 270 4, 396 13" fill="none" stroke="#2563eb" strokeWidth="8" strokeLinecap="round" />
+                      <path d="M 44 32 C 150 23, 280 22, 356 28" fill="none" stroke="#2563eb" strokeWidth="6" strokeLinecap="round" />
+                    </svg>
+                  )}
                 </span>
               ))}
             </h1>
 
-            <motion.p {...rise(0.4)} className="prose-body mt-8 max-w-[38rem] text-lg">
+            <motion.p {...rise(0.45)} className="prose-body mt-8 max-w-[36rem] text-lg">
               {profile.intro}
             </motion.p>
 
-            <motion.div {...rise(0.5)} className="mt-9 flex flex-wrap items-center gap-x-3 gap-y-4">
-              <ButtonLink href="/projects">
+            <motion.div {...rise(0.55)} className="mt-9 flex flex-wrap items-center gap-3">
+              <ButtonLink href="/projects" className="px-6 py-3.5">
                 Explore My Projects
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
               </ButtonLink>
-              <ButtonLink href="/contact" variant="secondary">
+              <ButtonLink href="/contact" variant="secondary" className="px-6 py-3.5">
                 Let&apos;s Connect
               </ButtonLink>
-              <span className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-fg-2 sm:ml-4">
-                {profile.resume.href && (
-                  <a href={profile.resume.href} download={profile.resume.fileName} className="inline-flex items-center gap-1.5 hover:text-cyan">
-                    <Download size={15} /> Download Resume
-                  </a>
-                )}
-                {profile.social.github && (
-                  <a href={profile.social.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-cyan">
-                    <GitHubIcon className="size-4" /> GitHub
-                  </a>
-                )}
-                {profile.social.linkedin && (
-                  <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-cyan">
-                    <LinkedInIcon className="size-4" /> LinkedIn
-                  </a>
-                )}
-              </span>
+            </motion.div>
+
+            <motion.div {...rise(0.65)} className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-fg-2">
+              {profile.resume.href && (
+                <a href={profile.resume.href} download={profile.resume.fileName} className="inline-flex items-center gap-1.5 hover:text-cyan">
+                  <Download size={15} /> Download Resume
+                </a>
+              )}
+              {profile.social.github && (
+                <a href={profile.social.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-cyan">
+                  <GitHubIcon className="size-4" /> GitHub
+                </a>
+              )}
+              {profile.social.linkedin && (
+                <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-cyan">
+                  <LinkedInIcon className="size-4" /> LinkedIn
+                </a>
+              )}
+              <span className="text-fg-3">{profile.location}</span>
             </motion.div>
           </div>
 
-          <motion.figure {...rise(0.25)} className="mx-auto w-full max-w-[300px] lg:max-w-none">
-            <ProfilePhoto priority sizes="(min-width: 1024px) 340px, 300px" className="aspect-[4/5] rounded-md bg-white" />
-            <figcaption className="mt-3 flex items-baseline justify-between gap-4 text-[13px]">
-              <span className="text-fg">{profile.name}</span>
-              <span className="text-fg-3">{profile.title}</span>
-            </figcaption>
-          </motion.figure>
+          <motion.div
+            initial={reduce ? false : { opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.2, ease }}
+          >
+            <HeroPortrait />
+          </motion.div>
         </div>
 
         <motion.dl {...rise(0.65)} className="mt-16 grid border-y border-line sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">

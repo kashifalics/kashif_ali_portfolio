@@ -49,7 +49,7 @@ export function Flagship({ project }: { project: Project }) {
         </div>
 
         <Link href={`/projects/${project.slug}`} aria-label={`${project.name} case study`} className="group mt-12 block">
-          <ProjectMedia project={project} priority natural sizes="(min-width: 1200px) 1150px, 100vw" />
+          <ProjectMedia project={project} natural sizes="(min-width: 1200px) 1150px, 100vw" />
         </Link>
 
         <dl className="mt-10 grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">

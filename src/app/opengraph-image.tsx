@@ -37,7 +37,7 @@ export default async function OpengraphImage() {
           <div style={{ fontSize: 22, color: "#38bdf8", letterSpacing: 3 }}>AI ENGINEER · ENTREPRENEUR</div>
           <div style={{ fontSize: 68, fontWeight: 700, marginTop: 24, lineHeight: 1.05 }}>{profile.name}</div>
           <div style={{ fontSize: 30, color: "#a8b5c7", marginTop: 24, lineHeight: 1.3 }}>
-            Engineering intelligent systems. Building products that matter.
+            Where AI meets engineering. Where ideas become products.
           </div>
         </div>
         {photo && (

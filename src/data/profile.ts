@@ -10,7 +10,8 @@ export const profile = {
   subtitle: "AI Engineer | Software Developer | Product Builder",
   eyebrow: "AI Engineer · Entrepreneur · Software Developer",
   location: "Lahore, Pakistan",
-  headline: ["Engineering Intelligent Systems.", "Building Products That Matter."],
+  /** Hero headline: the highlighted line is drawn in cyan with a hand-drawn underline. */
+  headline: { before: "Where AI Meets", highlight: "Engineering.", after: "Where Ideas Become Products." },
   intro:
     "I'm Muhammad Kashif Ali — an AI engineer and entrepreneur passionate about building intelligent applications, autonomous workflows, and digital products that solve real-world problems.",
   positioning:
@@ -42,6 +43,8 @@ export const profile = {
     width: 1000,
     height: 1000,
     focus: "50% 28%",
+    /** The same photo with its white backdrop removed, for the hero's painted circle. */
+    cutout: "/images/profile/kashif-ali-cutout.png",
   },
 } as const;
 
