@@ -39,12 +39,8 @@ or sample documents only.
 
 ### AI Job Apply Agent (https://job-agent-langgraph.vercel.app)
 
-Overview, Profile, Jobs, Matches, Applications and Documents were supplied on 2026-10-31 and are
-on the case study. One screen is still open:
-
-| Page to open | What should be visible | Save as |
-|---|---|---|
-| Profile → Import | A resume being imported, or its extracted facts | `public/images/projects/job-apply-agent/resume-import.png` |
+Complete: Overview, Profile, Jobs, Matches, Applications and Documents were supplied on
+2026-10-31 and the owner confirmed no further screens are needed.
 
 ### Multi-PDF RAG Chatbot (`Desktop/new_rag_chatbot/rag_multi_pdf_chatbot`)
 

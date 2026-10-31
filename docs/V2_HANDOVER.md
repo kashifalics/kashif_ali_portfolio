@@ -69,14 +69,13 @@ local server; Vercel's CDN usually improves this.
 
 **Completed and tested:** everything in section 2.
 
-**Waiting for your assets:** see `docs/VISUAL_ASSETS.md`. The six Job Apply Agent screens
-(resume import, profile, jobs, matches, applications, documents), the RAG chatbot,
-LangGraph API and voice agent captures.
+**Waiting for your assets:** see `docs/VISUAL_ASSETS.md`. The Job Apply Agent is complete;
+the RAG chatbot, LangGraph API and voice agent captures remain optional.
 
 **Waiting for credentials:** contact form delivery (`RESEND_API_KEY` on Vercel).
 
-**Waiting for your decision:** your role on the four Kashzo case studies; the Spadasoft wording
-(the brief differs from what you confirmed); see `docs/PROJECT_INVENTORY.md`.
+**Decided since:** Developer role on Kashzo work; Spadasoft stays "AI Engineer Intern,
+June – August 2026" as confirmed; see `docs/PROJECT_INVENTORY.md`.
 
 **Not implemented, by design:** YouTube RAG Chatbot, Resume Matcher, LangChain tool agent, n8n
 RAG workflow and Cats vs Dogs. No code or documents were found for them, and the brief says not
