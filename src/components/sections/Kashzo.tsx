@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { kashzo } from "@/data/experience";
-import { projects } from "@/data/projects";
+import { sortedProjects as projects } from "@/data/projects";
 import { Container, Section } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { StatusBadge } from "@/components/projects/Badges";

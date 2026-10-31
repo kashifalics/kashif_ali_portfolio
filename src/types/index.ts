@@ -56,6 +56,27 @@ export type Screenshot = {
   caption?: string;
   width: number;
   height: number;
+  /**
+   * Where the capture came from, shown in the frame's title bar: a real URL,
+   * "localhost:8502 · Streamlit", "Tkinter window" and so on. Never invented.
+   */
+  origin?: string;
+};
+
+/** A flow read from the project's source code, not an illustration of it. */
+export type SourceDiagram = {
+  /** Files the diagram was read from, shown as its source. */
+  source: string;
+  steps: { label: string; detail?: string }[];
+  /** Services the flow reads from or writes to, drawn under the steps. */
+  stores?: { label: string; detail?: string }[];
+};
+
+/** A verbatim excerpt of the project's code, optionally with its real output. */
+export type CodeExcerpt = {
+  file: string;
+  code: string;
+  output?: string;
 };
 
 export type Project = {
@@ -73,9 +94,12 @@ export type Project = {
   stack: string[];
   /** Grouped stack for the case study page. */
   stackGroups?: { label: string; items: string[] }[];
+  /** A real capture of the product. Cards fall back to `diagram`, then `code`, then a placeholder. */
   cover?: Screenshot;
-  /** Drawn visual used when there is no screenshot. */
-  visual?: "pipeline" | "graph" | "voice" | "chart" | "network" | "browser";
+  diagram?: SourceDiagram;
+  code?: CodeExcerpt;
+  /** Kept in the data but left off the site. */
+  hidden?: boolean;
   repoUrl?: string;
   liveUrl?: string;
   /** Why a link is missing, e.g. a private repository. */

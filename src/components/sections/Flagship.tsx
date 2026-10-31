@@ -48,16 +48,9 @@ export function Flagship({ project }: { project: Project }) {
           <Link
             href={`/projects/${project.slug}`}
             aria-label={`${project.name} case study`}
-            className="group relative mt-12 block rounded-[22px] border border-line-strong bg-gradient-to-b from-elevated to-bg-2 p-2 shadow-[0_40px_120px_-40px_rgba(56,189,248,0.35)] transition-colors hover:border-cyan/60 sm:p-3"
+            className="group relative mt-12 block rounded-xl shadow-[0_40px_120px_-50px_rgba(56,189,248,0.45)] transition-transform duration-500 hover:-translate-y-1"
           >
-            <ProjectMedia
-              project={project}
-              priority
-              natural
-              sizes="(min-width: 1200px) 1150px, 100vw"
-              className="aspect-[16/8] rounded-[14px] border border-line"
-            />
-            <span className="pointer-events-none absolute inset-2 rounded-[14px] bg-gradient-to-t from-bg/70 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:inset-3" />
+            <ProjectMedia project={project} priority natural sizes="(min-width: 1200px) 1150px, 100vw" />
           </Link>
         </Reveal>
 

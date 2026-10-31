@@ -1,12 +1,16 @@
 import Image from "next/image";
+import { ImageOff } from "lucide-react";
 import type { Project } from "@/types";
 import { cn } from "@/lib/site";
-import { ProjectVisual } from "./ProjectVisual";
+import { ScreenFrame } from "./ScreenFrame";
+import { SourceDiagramView } from "./SourceDiagramView";
+import { CodeExcerptView } from "./CodeExcerptView";
 
 /**
- * The project's cover image, or its drawn visual when no image is available.
- * With `natural`, a screenshot keeps its own proportions instead of being
- * cropped to the frame's aspect ratio.
+ * The project's main visual, always genuine: a real capture in a ScreenFrame,
+ * else a flow read from its code, else a verbatim code excerpt, else a neutral
+ * placeholder. `natural` keeps a capture at its own proportions (case studies);
+ * without it the visual fills the box it is given (cards).
  */
 export function ProjectMedia({
   project,
@@ -21,29 +25,63 @@ export function ProjectMedia({
   natural?: boolean;
   className?: string;
 }) {
-  const cover = project.cover;
-  const isLogo = cover?.src.includes("logo");
-  const style = natural && cover && !isLogo ? { aspectRatio: `${cover.width} / ${cover.height}` } : undefined;
-  return (
-    <div className={cn("relative overflow-hidden", className)} style={style}>
-      {cover ? (
-        isLogo ? (
-          <div className="grid size-full place-items-center bg-[radial-gradient(ellipse_at_50%_30%,#152238,#070b14_75%)] p-10">
-            <Image src={cover.src} alt={cover.alt} width={cover.width} height={cover.height} sizes="320px" className="h-auto w-[70%] max-w-[300px]" />
-          </div>
+  const { cover, diagram, code } = project;
+
+  if (cover) {
+    return (
+      <ScreenFrame origin={cover.origin} className={cn(!natural && "h-full", className)}>
+        {natural ? (
+          <Image src={cover.src} alt={cover.alt} width={cover.width} height={cover.height} sizes={sizes} priority={priority} className="h-auto w-full" />
         ) : (
-          <Image
-            src={cover.src}
-            alt={cover.alt}
-            fill
-            sizes={sizes}
-            priority={priority}
-            className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-          />
-        )
-      ) : (
-        <ProjectVisual kind={project.visual} label={`Diagram representing ${project.name}`} />
-      )}
+          <div className="relative min-h-0 flex-1">
+            <Image
+              src={cover.src}
+              alt={cover.alt}
+              fill
+              sizes={sizes}
+              priority={priority}
+              className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+            />
+          </div>
+        )}
+      </ScreenFrame>
+    );
+  }
+
+  if (diagram) {
+    return natural ? (
+      <div className={className}>
+        <SourceDiagramView diagram={diagram} />
+      </div>
+    ) : (
+      <div className={cn("h-full overflow-hidden rounded-xl border border-line-strong/50 bg-bg-2", className)}>
+        <SourceDiagramView diagram={diagram} compact />
+      </div>
+    );
+  }
+
+  if (code) {
+    return natural ? (
+      <div className={className}>
+        <CodeExcerptView excerpt={code} />
+      </div>
+    ) : (
+      <div className={cn("h-full overflow-hidden rounded-xl border border-line-strong/50", className)}>
+        <CodeExcerptView excerpt={code} compact />
+      </div>
+    );
+  }
+
+  return (
+    <div
+      role="img"
+      aria-label={`Screenshot of ${project.name} to be added`}
+      className={cn("grid h-full min-h-48 place-items-center rounded-xl border border-dashed border-line-strong/50 bg-bg-2/60", className)}
+    >
+      <span className="flex flex-col items-center gap-2 text-fg-3">
+        <ImageOff size={20} aria-hidden />
+        <span className="text-xs">Screenshot to be added</span>
+      </span>
     </div>
   );
 }

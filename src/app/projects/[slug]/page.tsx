@@ -9,6 +9,9 @@ import { Container } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { GitHubIcon } from "@/components/ui/icons";
 import { ProjectMedia } from "@/components/projects/ProjectMedia";
+import { ScreenFrame } from "@/components/projects/ScreenFrame";
+import { SourceDiagramView } from "@/components/projects/SourceDiagramView";
+import { CodeExcerptView } from "@/components/projects/CodeExcerptView";
 import { ArchitectureDiagram } from "@/components/projects/ArchitectureDiagram";
 import { FeatureStateBadge, OwnershipBadge, StatusBadge } from "@/components/projects/Badges";
 import { ContactCta } from "@/components/sections/ContactCta";
@@ -118,9 +121,12 @@ export default async function ProjectPage({ params }: Props) {
 
       <Container>
         <Reveal className="mt-12">
-          <div className="rounded-[22px] border border-line-strong bg-gradient-to-b from-elevated to-bg-2 p-2 shadow-[0_40px_120px_-50px_rgba(56,189,248,0.4)] sm:p-3">
-            <ProjectMedia project={project} priority natural sizes="(min-width: 1200px) 1150px, 100vw" className="aspect-[16/8] rounded-[14px] border border-line" />
-          </div>
+          <figure className={project.cover && project.cover.width / project.cover.height < 1.2 ? "mx-auto max-w-xl" : undefined}>
+            <div className="shadow-[0_40px_120px_-50px_rgba(56,189,248,0.4)]">
+              <ProjectMedia project={project} priority natural sizes="(min-width: 1200px) 1150px, 100vw" />
+            </div>
+            {project.cover?.caption && <figcaption className="mt-3 text-sm text-fg-3">{project.cover.caption}</figcaption>}
+          </figure>
         </Reveal>
 
         <dl className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
@@ -198,6 +204,18 @@ export default async function ProjectPage({ params }: Props) {
             )}
           </Block>
 
+          {project.diagram && project.cover && (
+            <Block title="How it runs">
+              <SourceDiagramView diagram={project.diagram} />
+            </Block>
+          )}
+
+          {project.code && (project.cover || project.diagram) && (
+            <Block title="From the code">
+              <CodeExcerptView excerpt={project.code} />
+            </Block>
+          )}
+
           {project.architecture && project.architectureFlow && (
             <Block title="System architecture">
               <ArchitectureDiagram nodes={project.architecture} flow={project.architectureFlow} title={`${project.slug} / architecture`} />
@@ -272,9 +290,9 @@ export default async function ProjectPage({ params }: Props) {
               <div className="grid gap-6 md:grid-cols-2">
                 {project.screenshots.map((s) => (
                   <figure key={s.src}>
-                    <div className="overflow-hidden rounded-xl border border-line bg-bg-2">
+                    <ScreenFrame origin={s.origin}>
                       <Image src={s.src} alt={s.alt} width={s.width} height={s.height} sizes="(min-width: 768px) 45vw, 100vw" className="h-auto w-full" />
-                    </div>
+                    </ScreenFrame>
                     {s.caption && <figcaption className="mt-2.5 text-sm text-fg-3">{s.caption}</figcaption>}
                   </figure>
                 ))}

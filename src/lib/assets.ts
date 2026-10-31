@@ -11,7 +11,7 @@ export function publicFileExists(src?: string) {
 
 /**
  * Drops images whose files have not been added yet, so a missing screenshot
- * falls back to a drawn visual instead of a broken image.
+ * falls back to the next genuine visual instead of a broken image.
  */
 export function withAvailableAssets(project: Project): Project {
   return {

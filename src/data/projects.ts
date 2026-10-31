@@ -28,7 +28,6 @@ export const projects: Project[] = [
       { label: "Infrastructure", items: ["Vercel", "Railway", "Docker", "GitHub Actions CI"] },
       { label: "Integrations", items: ["Chrome extension (Manifest V3)", "Greenhouse", "Lever", "Ashby", "Himalayas"] },
     ],
-    visual: "browser",
     liveUrl: "https://job-agent-langgraph.vercel.app",
     linkNote: "Source code is in a private repository. A walkthrough is available on request.",
     // The live app's Overview page, cropped to the app and with the account email removed.
@@ -38,6 +37,7 @@ export const projects: Project[] = [
       alt: "Job Apply Agent overview dashboard: sidebar with Overview, Profile, Jobs, Matches, Applications, Documents and Settings, a resume import prompt, quick actions and application statistics",
       width: 1897,
       height: 873,
+      origin: "job-agent-langgraph.vercel.app",
     },
     overview:
       "Job Apply Agent is a multi-user web product for people applying to jobs across Pakistan, the UK, the US, the UAE, Saudi Arabia and remote roles. It finds jobs from permitted sources, analyses each description once, matches it against the person's verified profile, drafts tailored documents that cite that evidence, and prepares the application for the person to approve. Nothing is ever submitted for them.",
@@ -165,6 +165,7 @@ export const projects: Project[] = [
         caption: "The extension fills a demo employer form and tells the person exactly what it filled. Demo data.",
         width: 1280,
         height: 800,
+        origin: "Demo employer form · Chrome extension",
       },
       {
         src: "/images/projects/job-agent-extension-recorded.png",
@@ -172,6 +173,7 @@ export const projects: Project[] = [
         caption: "After the employer confirms, the submission is recorded with the confirmation page as proof. Demo data.",
         width: 1280,
         height: 800,
+        origin: "Demo employer form · Chrome extension",
       },
     ],
   },
@@ -195,6 +197,7 @@ export const projects: Project[] = [
       alt: "Saqinova website homepage for a massage and wellness business",
       width: 1920,
       height: 1080,
+      origin: "saqinova.com",
     },
     overview:
       "A service-focused website for an appointment-based wellness business, where local discovery, credibility, clear treatment information and an easy way to book all matter.",
@@ -211,8 +214,8 @@ export const projects: Project[] = [
       { title: "Local search structure", description: "Location content and page structure aimed at local search.", state: "implemented" },
     ],
     screenshots: [
-      { src: "/images/projects/saqinova-home.png", alt: "Saqinova homepage on desktop", caption: "Homepage on desktop", width: 1920, height: 1080 },
-      { src: "/images/projects/saqinova-pricing-showcase.webp", alt: "Saqinova pricing section", caption: "Pricing, presented up front", width: 1180, height: 655 },
+      { src: "/images/projects/saqinova-home.png", alt: "Saqinova homepage on desktop", caption: "Homepage on desktop", width: 1920, height: 1080, origin: "saqinova.com" },
+      { src: "/images/projects/saqinova-pricing-showcase.webp", alt: "Saqinova pricing section", caption: "Pricing, presented up front", width: 1180, height: 655, origin: "saqinova.com" },
     ],
   },
 
@@ -229,7 +232,21 @@ export const projects: Project[] = [
     year: "2026",
     role: "Sole developer",
     stack: ["Python", "LangChain", "OpenAI", "ChromaDB", "FAISS", "SQLite", "Streamlit"],
-    visual: "pipeline",
+    diagram: {
+      source: "rag_pipeline.py · app.py",
+      steps: [
+        { label: "Validate", detail: "type, size, PDF signature, SHA-256 duplicate check" },
+        { label: "Extract", detail: "PyPDFLoader, page by page" },
+        { label: "Chunk", detail: "1000 characters, 200 overlap" },
+        { label: "Embed", detail: "text-embedding-3-small" },
+        { label: "Retrieve", detail: "per conversation, above a relevance threshold" },
+        { label: "Answer", detail: "cites filename and page, or says not found" },
+      ],
+      stores: [
+        { label: "ChromaDB", detail: "persistent vectors" },
+        { label: "SQLite", detail: "conversations and documents" },
+      ],
+    },
     repoUrl: "https://github.com/kashifalics/rag-multi-pdf-chatbot",
     overview:
       "Upload one or more PDFs and ask questions about them. The app retrieves the most relevant passages from a persistent vector store and asks an OpenAI model to answer only from that context.",
@@ -268,7 +285,34 @@ export const projects: Project[] = [
     year: "2026",
     role: "Sole developer",
     stack: ["Python", "LangGraph", "LangChain", "OpenAI", "Astra DB", "FastAPI"],
-    visual: "graph",
+    diagram: {
+      source: "graph.py · ingest.py · app.py",
+      steps: [
+        { label: "START" },
+        { label: "retrieve", detail: "retriever.invoke(question) → context" },
+        { label: "generate", detail: "gpt-4.1-mini, temperature 0, context only" },
+        { label: "END", detail: "answer" },
+      ],
+      stores: [
+        { label: "Astra DB", detail: "collection pdf_rag_demo, similarity k=4" },
+        { label: "FastAPI", detail: "POST /upload · POST /chat" },
+      ],
+    },
+    code: {
+      file: "graph.py",
+      code: `class GraphState(TypedDict):
+    question: str
+    context: List[Document]
+    answer: str
+
+builder = StateGraph(GraphState)
+builder.add_node("retrieve", retrieve)
+builder.add_node("generate", generate)
+builder.add_edge(START, "retrieve")
+builder.add_edge("retrieve", "generate")
+builder.add_edge("generate", END)
+return builder.compile()`,
+    },
     linkNote: "The public repository has not been populated yet.",
     overview:
       "An ingestion script loads PDFs into Astra DB; a LangGraph graph with typed state retrieves context and generates an answer that refuses to go beyond it.",
@@ -294,7 +338,29 @@ export const projects: Project[] = [
     year: "2026",
     role: "Built during the Spadasoft internship",
     stack: ["Python", "FastAPI", "VAPI", "OpenAI", "Supabase", "n8n", "Streamlit"],
-    visual: "voice",
+    diagram: {
+      source: "app.py · models.py · rag.py",
+      steps: [
+        { label: "Guest call", detail: "VAPI voice assistant" },
+        { label: "Tool call", detail: "/search-menu · /place-order · /check-order-status" },
+        { label: "Validate", detail: "Pydantic models, prices from the menu table, one order per tool-call ID" },
+        { label: "Notify staff", detail: "n8n webhook" },
+        { label: "Dashboard", detail: "Streamlit: orders and their status" },
+      ],
+      stores: [
+        { label: "Supabase", detail: "orders, menu_items" },
+        { label: "pgvector", detail: "menu answers: match_hotel_documents → gpt-4.1-mini" },
+      ],
+    },
+    code: {
+      file: "models.py",
+      code: `class PlaceOrderArguments(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+
+    room_number: str = Field(min_length=1, max_length=20)
+    customer_name: str = Field(default="Guest", min_length=1, max_length=100)
+    items: list[OrderItem] = Field(min_length=1, max_length=50)`,
+    },
     repoUrl: "https://github.com/kashifalics/order-taking-voice-agent",
     overview:
       "The voice platform calls the backend's tools during a conversation. The backend validates each order against the menu, prevents duplicate submissions with a request fingerprint, stores it in Supabase and notifies staff through an n8n webhook.",
@@ -318,7 +384,17 @@ export const projects: Project[] = [
     order: 8,
     year: "2026",
     stack: ["Python", "LangChain", "OpenAI", "Pinecone", "Streamlit"],
-    visual: "pipeline",
+    diagram: {
+      source: "app.py",
+      steps: [
+        { label: "Upload", detail: "Streamlit sidebar, several PDFs" },
+        { label: "Extract", detail: "PyPDFLoader" },
+        { label: "Chunk", detail: "1000 characters, 100 overlap" },
+        { label: "Embed", detail: "OpenAI embeddings" },
+        { label: "Answer", detail: "RetrievalQA, with references" },
+      ],
+      stores: [{ label: "Pinecone", detail: "serverless index langchainvector" }],
+    },
     repoUrl: "https://github.com/kashifalics/PDF-Q-A-System",
   },
 
@@ -334,7 +410,15 @@ export const projects: Project[] = [
     order: 9,
     year: "2026",
     stack: ["Python", "OpenCV", "Google Gemini", "pyttsx3", "Streamlit"],
-    visual: "network",
+    diagram: {
+      source: "app.py",
+      steps: [
+        { label: "Webcam frame", detail: "OpenCV VideoCapture" },
+        { label: "Image", detail: "BGR → RGB, PIL" },
+        { label: "Gemini 1.5 Flash", detail: "reads the expression, writes a reply" },
+        { label: "Speech", detail: "pyttsx3 text-to-speech" },
+      ],
+    },
     repoUrl: "https://github.com/kashifalics/AI-Powered-Real-Time-Emotion-Analysis-System",
   },
 
@@ -351,13 +435,13 @@ export const projects: Project[] = [
     year: "2026",
     role: "Founder; designed and built the site",
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Playwright"],
-    visual: "browser",
     liveUrl: "https://www.kashzo.com",
     cover: {
-      src: "/images/kashzo/kashzo-logo.png",
-      alt: "Kashzo Solutions logo",
-      width: 1838,
-      height: 475,
+      src: "/images/projects/kashzo-website/home.png",
+      alt: "Kashzo Solutions homepage: website design and development for UK businesses",
+      width: 1440,
+      height: 900,
+      origin: "www.kashzo.com",
     },
   },
 
@@ -377,14 +461,15 @@ export const projects: Project[] = [
       alt: "Devnique website homepage: AI and digital transformation services",
       width: 1920,
       height: 1080,
+      origin: "devnique.com",
     },
     liveUrl: "https://www.kashzo.com",
     overview:
       "A selection of client websites from the Kashzo Solutions portfolio. Each one is live on the client's own domain.",
     screenshots: [
-      { src: "/images/projects/devnique.png", alt: "Devnique website homepage: AI and digital transformation services", caption: "Devnique · devnique.com", width: 1920, height: 1080 },
-      { src: "/images/projects/valorin.png", alt: "Valorin corporate website for financial advisory services", caption: "Valorin · valorin.uk", width: 1920, height: 1080 },
-      { src: "/images/projects/trendbox.png", alt: "TrendBox online shop homepage showing featured products", caption: "TrendBox · trendbox.uk", width: 1920, height: 1080 },
+      { src: "/images/projects/devnique.png", alt: "Devnique website homepage: AI and digital transformation services", caption: "Devnique", width: 1920, height: 1080, origin: "devnique.com" },
+      { src: "/images/projects/valorin.png", alt: "Valorin corporate website for financial advisory services", caption: "Valorin", width: 1920, height: 1080, origin: "valorin.uk" },
+      { src: "/images/projects/trendbox.png", alt: "TrendBox online shop homepage showing featured products", caption: "TrendBox", width: 1920, height: 1080, origin: "trendbox.uk" },
     ],
     pending: ["Add each site's stack and your exact role on it."],
   },
@@ -402,7 +487,17 @@ export const projects: Project[] = [
     year: "2026",
     role: "Founder; sole engineer",
     stack: ["Python", "FastAPI", "Next.js", "TypeScript", "LLM drafting"],
-    visual: "pipeline",
+    diagram: {
+      source: "README.md · src/kashzo_outreach/",
+      steps: [
+        { label: "Import", detail: "prospect spreadsheets; never drafts or sends" },
+        { label: "Research", detail: "each business's public website" },
+        { label: "Score", detail: "the opportunity" },
+        { label: "Draft", detail: "a short, personalised email" },
+        { label: "Approve", detail: "a person approves the exact content" },
+        { label: "Send", detail: "only after a typed confirmation" },
+      ],
+    },
     linkNote: "Internal tool; code-complete for a supervised pilot, not yet in production.",
     overview:
       "Safe by default: importing never drafts or sends, every email needs approval of its exact content plus a separate typed confirmation, and live sending stays off until the owner activates it.",
@@ -421,11 +516,13 @@ export const projects: Project[] = [
     year: "2026",
     stack: ["HTML", "CSS", "JavaScript"],
     repoUrl: "https://github.com/kashifalics/demos",
+    liveUrl: "https://jap-roofing-concept.vercel.app",
     cover: {
-      src: "/images/projects/jap-roofing-hero.webp",
-      alt: "Concept imagery of a roofer at work, used in the homepage concept",
-      width: 1600,
-      height: 1067,
+      src: "/images/projects/jap-roofing/home.png",
+      alt: "JAP Roofing homepage concept: roofing services hero with a request-a-quote button, marked as a concept prepared by Kashzo Solutions",
+      width: 1440,
+      height: 900,
+      origin: "jap-roofing-concept.vercel.app",
     },
   },
 
@@ -441,7 +538,6 @@ export const projects: Project[] = [
     order: 12,
     year: "2026",
     stack: ["Next.js", "React", "TypeScript", "Playwright", "Vitest"],
-    visual: "chart",
   },
 
   {
@@ -449,26 +545,45 @@ export const projects: Project[] = [
     name: "House Price Prediction",
     tagline: "Regression on the California housing dataset.",
     summary:
-      "A trained regression model for California house prices with a training script, saved model and a Streamlit interface for predictions.",
+      "A regression model for California house prices, with a training script, a saved model and a Tkinter desktop app that estimates a price from eight inputs and ocean proximity.",
     categories: ["Machine Learning"],
     status: "Completed",
     ownership: "Independent Project",
     order: 13,
-    stack: ["Python", "Pandas", "NumPy", "Scikit-learn", "Streamlit"],
-    visual: "chart",
+    stack: ["Python", "Pandas", "Scikit-learn", "Joblib", "Tkinter"],
+    cover: {
+      src: "/images/projects/house-price/app.png",
+      alt: "California House Price Prediction desktop app with the first row of the housing dataset entered and an estimated price of $429,307.83",
+      caption: "The first row of housing.csv entered: the model estimates $429,308 against a recorded value of $452,600.",
+      width: 700,
+      height: 700,
+      origin: "Tkinter window · ui.py",
+    },
   },
 
   {
     slug: "loan-approval-prediction",
     name: "Loan Approval Prediction",
     tagline: "Classifying loan applications from applicant data.",
-    summary: "A classification model built in a Jupyter notebook to predict loan approval, with the trained model saved for reuse.",
+    summary: "A random forest classifier, built in a Jupyter notebook, that predicts loan approval: 81.8% accuracy on the held-out test set and an 82.9% mean cross-validation score.",
     categories: ["Machine Learning"],
     status: "Completed",
     ownership: "Independent Project",
     order: 14,
     stack: ["Python", "Pandas", "Scikit-learn", "Jupyter"],
-    visual: "chart",
+    code: {
+      file: "Loan Approval Prediction.ipynb",
+      code: `from sklearn.ensemble import RandomForestClassifier
+model = RandomForestClassifier()
+model.fit(X_train, y_train)
+
+model.score(X_test,y_test)
+
+cv_scores = cross_val_score(model, X_train, y_train, cv=2)
+print("Mean CV score: ", cv_scores.mean())`,
+      output: `0.8181818181818182
+Mean CV score:  0.8293832823649337`,
+    },
     repoUrl: "https://github.com/kashifalics/Loan-approval-prediction",
   },
 
@@ -483,8 +598,15 @@ export const projects: Project[] = [
     ownership: "Independent Project",
     order: 15,
     stack: ["Python", "Scikit-learn", "Pandas", "Streamlit"],
-    visual: "chart",
     repoUrl: "https://github.com/kashifalics/Weather-Forcast-Prediction",
+    cover: {
+      src: "/images/projects/weather/app.png",
+      alt: "Weather Predictor app with summer, 45% humidity, 8.5 km/h wind, 10% precipitation and 40°C entered, predicting Sunny",
+      caption: "Inputs for a hot summer day; the SVC model predicts Sunny.",
+      width: 1280,
+      height: 800,
+      origin: "localhost · Streamlit app.py",
+    },
   },
 
   {
@@ -496,8 +618,9 @@ export const projects: Project[] = [
     status: "Prototype",
     ownership: "Independent Project",
     order: 16,
+    // Trains on 12 built-in reviews and its own sidebar reports 0% test accuracy.
+    hidden: true,
     stack: ["Python", "Scikit-learn", "TF-IDF", "Streamlit"],
-    visual: "network",
   },
 ];
 
@@ -512,13 +635,14 @@ export const categories: ProjectCategory[] = [
   "Academic Projects",
 ];
 
-export const sortedProjects = [...projects].sort((a, b) => a.order - b.order);
+/** Projects shown on the site, in display order. */
+export const sortedProjects = projects.filter((p) => !p.hidden).sort((a, b) => a.order - b.order);
 
 export function getProject(slug: string) {
-  return projects.find((p) => p.slug === slug);
+  return sortedProjects.find((p) => p.slug === slug);
 }
 
 /** Only categories that have at least one project, so no filter leads nowhere. */
 export const usedCategories = categories.filter((c) =>
-  projects.some((p) => p.categories.includes(c)),
+  sortedProjects.some((p) => p.categories.includes(c)),
 );

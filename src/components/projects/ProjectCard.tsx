@@ -7,10 +7,13 @@ import { OwnershipBadge, StatusBadge } from "./Badges";
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="group card relative flex h-full flex-col overflow-hidden transition-colors duration-300 hover:border-line-strong">
-      <div className="relative">
-        <ProjectMedia project={project} sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw" className="aspect-[16/9] border-b border-line" />
-        <div className="absolute top-3 left-3">
-          <StatusBadge status={project.status} className="bg-bg/80 backdrop-blur" />
+      {/* The visual is pinned inside a fixed 16:10 box so tall content never stretches a card. */}
+      <div className="relative aspect-[16/10] border-b border-line bg-[radial-gradient(ellipse_at_50%_0%,rgba(56,189,248,0.08),transparent_70%)]">
+        <div className="absolute inset-3 sm:inset-3.5">
+          <ProjectMedia project={project} sizes="(min-width: 1024px) 360px, (min-width: 640px) 48vw, 92vw" />
+        </div>
+        <div className="absolute top-[1.05rem] right-[1.1rem] sm:top-[1.15rem] sm:right-[1.25rem]">
+          <StatusBadge status={project.status} className="bg-bg/85 py-0.5 backdrop-blur" />
         </div>
       </div>
       <div className="flex flex-1 flex-col p-5 sm:p-6">
