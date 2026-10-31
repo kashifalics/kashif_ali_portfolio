@@ -22,7 +22,7 @@ placeholder. Generated illustrations have been removed.
 | AI-Powered PDF Query System | Pipeline | Read from `app.py` (public repo) |
 | Real-Time Emotion Analysis | Pipeline | Read from `app.py` (public repo) |
 | Kashzo Outreach | Pipeline | Read from its README and package layout |
-| The Apex Trader | Placeholder | Needs a capture (below) |
+| The Apex Trader | Homepage | Owner's capture of the-apex-trader.vercel.app, cropped to the site (original in `design-reference/`) |
 
 Not shown: **Product Review Sentiment Analyzer** is hidden (`hidden: true` in
 `src/data/projects.ts`). It trains on 12 built-in reviews, its own sidebar reports 0.0% test
@@ -80,7 +80,6 @@ room numbers. Blur or crop them; the site never names the hotel.
 | AI-Powered PDF Query System | `streamlit run app.py` (needs OpenAI + Pinecone keys) | A question answered from an uploaded public PDF | `public/images/projects/pdf-qa/answer.png` |
 | Real-Time Emotion Analysis | `streamlit run app.py` (needs a Gemini key and webcam) | The webcam frame next to Gemini's reply | `public/images/projects/emotion/app.png` |
 | Kashzo Outreach | its frontend and backend locally, with sample data | The approval queue showing a drafted email awaiting approval | `public/images/projects/outreach/approval.png` |
-| The Apex Trader | `pnpm dev` in `Desktop/THE APEX WEBSITE` | The homepage (demo data is labelled) | `public/images/projects/apex-trader/home.png` |
 
 ## Adding a capture
 

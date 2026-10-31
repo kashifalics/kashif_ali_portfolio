@@ -538,6 +538,14 @@ return builder.compile()`,
     order: 12,
     year: "2026",
     stack: ["Next.js", "React", "TypeScript", "Playwright", "Vitest"],
+    liveUrl: "https://the-apex-trader.vercel.app",
+    cover: {
+      src: "/images/projects/apex-trader/home.png",
+      alt: "The Apex Trader homepage: the headline Discipline over prediction, a description of price-action and risk-managed trading, and a globe marking the New York, London, Tokyo and Sydney sessions",
+      width: 1897,
+      height: 889,
+      origin: "the-apex-trader.vercel.app",
+    },
   },
 
   {
